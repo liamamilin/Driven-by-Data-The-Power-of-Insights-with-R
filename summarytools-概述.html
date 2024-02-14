@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 1. summarytools 概述 | Driven by Data: The Power of Insights with R</title>
+  <meta name="description" content="Chapter 5 1. summarytools 概述 | Driven by Data: The Power of Insights with R" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 1. summarytools 概述 | Driven by Data: The Power of Insights with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 1. summarytools 概述 | Driven by Data: The Power of Insights with R" />
+  
+  
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="数据科学的其他话题.html"/>
+<link rel="next" href="r-绘图.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Driven by Data: The Power of Insights with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#一个简单的例子"><i class="fa fa-check"></i><b>1.1</b> 一个简单的例子</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#数据分析的4原则"><i class="fa fa-check"></i><b>1.2</b> 数据分析的4原则:</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#sumamry"><i class="fa fa-check"></i><b>1.3</b> sumamry</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#数据可视化"><i class="fa fa-check"></i><b>1.3.1</b> 数据可视化</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#数据处理"><i class="fa fa-check"></i><b>1.3.2</b> 数据处理</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#数据探索"><i class="fa fa-check"></i><b>1.3.3</b> 数据探索</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#数据整理"><i class="fa fa-check"></i><b>1.3.4</b> 数据整理</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#多数据集合并"><i class="fa fa-check"></i><b>1.3.5</b> 多数据集合并</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#字符串"><i class="fa fa-check"></i><b>1.3.6</b> 字符串</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#因子"><i class="fa fa-check"></i><b>1.3.7</b> 因子</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#时间日期"><i class="fa fa-check"></i><b>1.3.8</b> 时间日期</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#图形细节调整"><i class="fa fa-check"></i><b>1.3.9</b> 图形细节调整</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数据.html"><a href="数据.html"><i class="fa fa-check"></i><b>2</b> 数据</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数据.html"><a href="数据.html#什么是数据"><i class="fa fa-check"></i><b>2.1</b> 什么是数据</a></li>
+<li class="chapter" data-level="2.2" data-path="数据.html"><a href="数据.html#不同种类数据"><i class="fa fa-check"></i><b>2.2</b> 不同种类数据</a></li>
+<li class="chapter" data-level="2.3" data-path="数据.html"><a href="数据.html#关于变量"><i class="fa fa-check"></i><b>2.3</b> 关于变量</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="数据转换.html"><a href="数据转换.html"><i class="fa fa-check"></i><b>3</b> 数据转换</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="数据转换.html"><a href="数据转换.html#data-transformation"><i class="fa fa-check"></i><b>3.1</b> Data transformation</a></li>
+<li class="chapter" data-level="3.2" data-path="数据转换.html"><a href="数据转换.html#什么是tidy整齐的数据"><i class="fa fa-check"></i><b>3.2</b> 什么是tidy(整齐)的数据</a></li>
+<li class="chapter" data-level="3.3" data-path="数据转换.html"><a href="数据转换.html#pivot_longer"><i class="fa fa-check"></i><b>3.3</b> pivot_longer</a></li>
+<li class="chapter" data-level="3.4" data-path="数据转换.html"><a href="数据转换.html#pivot_wider"><i class="fa fa-check"></i><b>3.4</b> pivot_wider</a></li>
+<li class="chapter" data-level="3.5" data-path="数据转换.html"><a href="数据转换.html#常用数据处理函数"><i class="fa fa-check"></i><b>3.5</b> 常用数据处理函数</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="数据转换.html"><a href="数据转换.html#rename"><i class="fa fa-check"></i><b>3.5.1</b> rename</a></li>
+<li class="chapter" data-level="3.5.2" data-path="数据转换.html"><a href="数据转换.html#select"><i class="fa fa-check"></i><b>3.5.2</b> select</a></li>
+<li class="chapter" data-level="3.5.3" data-path="数据转换.html"><a href="数据转换.html#mutate"><i class="fa fa-check"></i><b>3.5.3</b> mutate</a></li>
+<li class="chapter" data-level="3.5.4" data-path="数据转换.html"><a href="数据转换.html#filter"><i class="fa fa-check"></i><b>3.5.4</b> filter</a></li>
+<li class="chapter" data-level="3.5.5" data-path="数据转换.html"><a href="数据转换.html#arrange"><i class="fa fa-check"></i><b>3.5.5</b> arrange</a></li>
+<li class="chapter" data-level="3.5.6" data-path="数据转换.html"><a href="数据转换.html#group_by-and-summarize"><i class="fa fa-check"></i><b>3.5.6</b> group_by and summarize</a></li>
+<li class="chapter" data-level="3.5.7" data-path="数据转换.html"><a href="数据转换.html#slice_max-slice_min"><i class="fa fa-check"></i><b>3.5.7</b> slice_max (slice_min)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="数据转换.html"><a href="数据转换.html#join"><i class="fa fa-check"></i><b>3.5.8</b> join</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="数据转换.html"><a href="数据转换.html#data-cleaning"><i class="fa fa-check"></i><b>3.6</b> Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="数据转换.html"><a href="数据转换.html#splitting-text"><i class="fa fa-check"></i><b>3.6.1</b> Splitting Text</a></li>
+<li class="chapter" data-level="3.6.2" data-path="数据转换.html"><a href="数据转换.html#replace-values"><i class="fa fa-check"></i><b>3.6.2</b> Replace Values</a></li>
+<li class="chapter" data-level="3.6.3" data-path="数据转换.html"><a href="数据转换.html#drop-columns"><i class="fa fa-check"></i><b>3.6.3</b> Drop Columns</a></li>
+<li class="chapter" data-level="3.6.4" data-path="数据转换.html"><a href="数据转换.html#drop-rows"><i class="fa fa-check"></i><b>3.6.4</b> Drop Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html"><i class="fa fa-check"></i><b>4</b> 数据科学的其他话题</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#定义数据科学问题"><i class="fa fa-check"></i><b>4.1</b> 定义数据科学问题</a></li>
+<li class="chapter" data-level="4.2" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#建模与统计推断"><i class="fa fa-check"></i><b>4.2</b> 建模与统计推断</a></li>
+<li class="chapter" data-level="4.3" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#因果推断"><i class="fa fa-check"></i><b>4.3</b> 因果推断</a></li>
+<li class="chapter" data-level="4.4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#分析结果展示"><i class="fa fa-check"></i><b>4.4</b> 分析结果展示</a></li>
+<li class="chapter" data-level="4.5" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#数据科学演讲"><i class="fa fa-check"></i><b>4.5</b> 数据科学演讲</a></li>
+<li class="chapter" data-level="4.6" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#可重复性"><i class="fa fa-check"></i><b>4.6</b> 可重复性</a></li>
+<li class="chapter" data-level="4.7" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#总结"><i class="fa fa-check"></i><b>4.7</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarytools-概述.html"><a href="summarytools-概述.html"><i class="fa fa-check"></i><b>5</b> 1. summarytools 概述</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#频率表freq"><i class="fa fa-check"></i><b>5.1</b> 2. 频率表：freq()</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#同时生成多个频率表"><i class="fa fa-check"></i><b>5.1.1</b> 同时生成多个频率表</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#子集过滤频率表"><i class="fa fa-check"></i><b>5.1.2</b> 子集（过滤）频率表</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可折叠节"><i class="fa fa-check"></i><b>5.1.3</b> 可折叠节</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#交叉表ctable"><i class="fa fa-check"></i><b>5.2</b> 3. 交叉表：ctable()</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#行列或总体比例"><i class="fa fa-check"></i><b>5.2.1</b> 行、列或总体比例</a></li>
+<li class="chapter" data-level="5.2.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#最小交叉表"><i class="fa fa-check"></i><b>5.2.2</b> 最小交叉表</a></li>
+<li class="chapter" data-level="5.2.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#卡方检验𝛘²几率比和风险比"><i class="fa fa-check"></i><b>5.2.3</b> 卡方检验（𝛘²）、几率比和风险比</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#描述性统计-descr"><i class="fa fa-check"></i><b>5.3</b> 4. 描述性统计: descr()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#转置和选择统计信息"><i class="fa fa-check"></i><b>5.3.1</b> 转置和选择统计信息</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="summarytools-概述.html"><a href="summarytools-概述.html#数据框摘要-dfsummary"><i class="fa fa-check"></i><b>5.4</b> 5. 数据框摘要: dfSummary()</a></li>
+<li class="chapter" data-level="5.5" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可选统计信息"><i class="fa fa-check"></i><b>5.5</b> 可选统计信息</a></li>
+<li class="chapter" data-level="5.6" data-path="summarytools-概述.html"><a href="summarytools-概述.html#grouped-statistics"><i class="fa fa-check"></i><b>5.6</b> 6.Grouped Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="summarytools-概述.html"><a href="summarytools-概述.html#分组统计group_by"><i class="fa fa-check"></i><b>5.7</b> 7. 分组统计：group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-绘图.html"><a href="r-绘图.html"><i class="fa fa-check"></i><b>6</b> R 绘图</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-绘图.html"><a href="r-绘图.html#词云"><i class="fa fa-check"></i><b>6.1</b> 词云</a></li>
+<li class="chapter" data-level="6.2" data-path="r-绘图.html"><a href="r-绘图.html#使用-plotly-创建交互式图表"><i class="fa fa-check"></i><b>6.2</b> 使用 Plotly 创建交互式图表</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="r-绘图.html"><a href="r-绘图.html#ggplot-图和plotly-图转换"><i class="fa fa-check"></i><b>6.2.1</b> ggplot 图和plotly 图转换</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-绘图.html"><a href="r-绘图.html#ggfortify"><i class="fa fa-check"></i><b>6.3</b> ggfortify</a></li>
+<li class="chapter" data-level="6.4" data-path="r-绘图.html"><a href="r-绘图.html#corrplot"><i class="fa fa-check"></i><b>6.4</b> corrplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="因果推断-1.html"><a href="因果推断-1.html"><i class="fa fa-check"></i><b>7</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="因果推断-1.html"><a href="因果推断-1.html#因果推断的基本概念"><i class="fa fa-check"></i><b>7.1</b> 因果推断的基本概念</a></li>
+<li class="chapter" data-level="7.2" data-path="因果推断-1.html"><a href="因果推断-1.html#r中的因果推断工具"><i class="fa fa-check"></i><b>7.2</b> R中的因果推断工具</a></li>
+<li class="chapter" data-level="7.3" data-path="因果推断-1.html"><a href="因果推断-1.html#匹配方法"><i class="fa fa-check"></i><b>7.3</b> 匹配方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="因果推断-1.html"><a href="因果推断-1.html#倾向得分匹配"><i class="fa fa-check"></i><b>7.3.1</b> 倾向得分匹配</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="因果推断-1.html"><a href="因果推断-1.html#工具变量法"><i class="fa fa-check"></i><b>7.4</b> 工具变量法</a></li>
+<li class="chapter" data-level="7.5" data-path="因果推断-1.html"><a href="因果推断-1.html#参考"><i class="fa fa-check"></i><b>7.5</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="process-mining.html"><a href="process-mining.html"><i class="fa fa-check"></i><b>8</b> Process mining</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="process-mining.html"><a href="process-mining.html#流程挖掘的基本概念"><i class="fa fa-check"></i><b>8.1</b> 流程挖掘的基本概念</a></li>
+<li class="chapter" data-level="8.2" data-path="process-mining.html"><a href="process-mining.html#r语言中的流程挖掘工具"><i class="fa fa-check"></i><b>8.2</b> R语言中的流程挖掘工具</a></li>
+<li class="chapter" data-level="8.3" data-path="process-mining.html"><a href="process-mining.html#数据准备"><i class="fa fa-check"></i><b>8.3</b> 数据准备</a></li>
+<li class="chapter" data-level="8.4" data-path="process-mining.html"><a href="process-mining.html#控制流挖掘"><i class="fa fa-check"></i><b>8.4</b> 控制流挖掘</a></li>
+<li class="chapter" data-level="8.5" data-path="process-mining.html"><a href="process-mining.html#性能分析"><i class="fa fa-check"></i><b>8.5</b> 性能分析</a></li>
+<li class="chapter" data-level="8.6" data-path="process-mining.html"><a href="process-mining.html#社会网络分析"><i class="fa fa-check"></i><b>8.6</b> 社会网络分析</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>9</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性-feature-importance"><i class="fa fa-check"></i><b>9.1</b> 特征重要性 (Feature Importance)</a></li>
+<li class="chapter" data-level="9.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#偏差分析-partial-dependence-plots-pdp"><i class="fa fa-check"></i><b>9.2</b> 偏差分析 (Partial Dependence Plots, PDP)</a></li>
+<li class="chapter" data-level="9.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部解释"><i class="fa fa-check"></i><b>9.3</b> 局部解释</a></li>
+<li class="chapter" data-level="9.4" data-path="可解释机器学习.html"><a href="可解释机器学习.html#参考-1"><i class="fa fa-check"></i><b>9.4</b> 参考</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">Driven by Data: The Power of Insights with R</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Driven by Data: The Power of Insights with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="summarytools-概述" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> 1. summarytools 概述<a href="summarytools-概述.html#summarytools-概述" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>summarytools提供了一套连贯的函数集，以数据探索和简单报告为中心。其核心包括以下四个函数：</p>
+<table>
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>freq()</td>
+<td>频率表，包括计数、比例、累积统计以及缺失数据报告</td>
+</tr>
+<tr class="even">
+<td>ctable()</td>
+<td>两个离散/分类变量之间的交叉表（联合频率），包括边际总数以及行、列或总体比例</td>
+</tr>
+<tr class="odd">
+<td>descr()</td>
+<td>数值数据的描述性（单变量）统计，包括常见的集中趋势和离散度指标</td>
+</tr>
+<tr class="even">
+<td>dfSummary()</td>
+<td>数据框摘要，为所有变量提供类型特定信息：单变量统计和/或频率分布、条形图或直方图，以及缺失数据计数和比例。非常有用，可以快速检测异常并一目了然地识别趋势</td>
+</tr>
+</tbody>
+</table>
+<div id="频率表freq" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> 2. 频率表：freq()<a href="summarytools-概述.html#频率表freq" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>freq()函数生成带有计数、比例以及缺失数据信息的频率表。需要注意的是：创建此包的最初想法源自于base R中缺少这样一个函数。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="summarytools-概述.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code></pre></div>
+<pre><code>## Warning in system2(&quot;/usr/bin/otool&quot;, c(&quot;-L&quot;, shQuote(DSO)), stdout = TRUE):
+## running command &#39;&#39;/usr/bin/otool&#39; -L
+## &#39;/Library/Frameworks/R.framework/Resources/library/tcltk/libs//tcltk.so&#39;&#39; had
+## status 1</code></pre>
+<pre><code>## Warning in fun(libname, pkgname): couldn&#39;t connect to display &quot;:0&quot;</code></pre>
+<pre><code>## system might not have X11 capabilities; in case of errors when using dfSummary(), set st_options(use.x11 = FALSE)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="summarytools-概述.html#cb5-1" tabindex="-1"></a><span class="fu">freq</span>(iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## Frequencies  
+## iris$Species  
+## Type: Factor  
+## 
+##                    Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ---------------- ------ --------- -------------- --------- --------------
+##           setosa     50     33.33          33.33     33.33          33.33
+##       versicolor     50     33.33          66.67     33.33          66.67
+##        virginica     50     33.33         100.00     33.33         100.00
+##             &lt;NA&gt;      0                               0.00         100.00
+##            Total    150    100.00         100.00    100.00         100.00</code></pre>
+<p>summarytools的主要目的之一是帮助清理和准备数据以供进一步分析。但在某些情况下，我们不需要（或已经有了）有关缺失数据的信息。使用report.nas = FALSE可以使输出表格减少一行两列：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="summarytools-概述.html#cb7-1" tabindex="-1"></a><span class="fu">freq</span>(iris<span class="sc">$</span>Species, <span class="at">report.nas =</span> <span class="cn">FALSE</span>, <span class="at">headings =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##                    Freq        %   % Cum.
+## ---------------- ------ -------- --------
+##           setosa     50    33.33    33.33
+##       versicolor     50    33.33    66.67
+##        virginica     50    33.33   100.00
+##            Total    150   100.00   100.00</code></pre>
+<p>参数headings = FALSE抑制了标题部分。通过“关闭”所有可选元素，可以生成一个简化的表格：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="summarytools-概述.html#cb9-1" tabindex="-1"></a><span class="fu">freq</span>(iris<span class="sc">$</span>Species, </span>
+<span id="cb9-2"><a href="summarytools-概述.html#cb9-2" tabindex="-1"></a>     <span class="at">report.nas =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb9-3"><a href="summarytools-概述.html#cb9-3" tabindex="-1"></a>     <span class="at">totals     =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb9-4"><a href="summarytools-概述.html#cb9-4" tabindex="-1"></a>     <span class="at">cumul      =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb9-5"><a href="summarytools-概述.html#cb9-5" tabindex="-1"></a>     <span class="at">headings   =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##                    Freq       %
+## ---------------- ------ -------
+##           setosa     50   33.33
+##       versicolor     50   33.33
+##        virginica     50   33.33</code></pre>
+<div id="同时生成多个频率表" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> 同时生成多个频率表<a href="summarytools-概述.html#同时生成多个频率表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>要为数据框中的所有变量生成频率表，我们可以（并且在最早的版本中需要）使用lapply()。但是，这不是必需的，因为freq()接受数据框作为主要参数：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="summarytools-概述.html#cb11-1" tabindex="-1"></a><span class="fu">freq</span>(tobacco)</span></code></pre></div>
+<pre><code>## Variable(s) ignored: age, BMI, cigs.per.day</code></pre>
+<pre><code>## Frequencies  
+## tobacco$gender  
+## Type: Factor  
+## 
+##               Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------ --------- -------------- --------- --------------
+##           F    489     50.00          50.00     48.90          48.90
+##           M    489     50.00         100.00     48.90          97.80
+##        &lt;NA&gt;     22                               2.20         100.00
+##       Total   1000    100.00         100.00    100.00         100.00
+## 
+## tobacco$age.gr  
+## Type: Factor  
+## 
+##               Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------ --------- -------------- --------- --------------
+##       18-34    258     26.46          26.46     25.80          25.80
+##       35-50    241     24.72          51.18     24.10          49.90
+##       51-70    317     32.51          83.69     31.70          81.60
+##        71 +    159     16.31         100.00     15.90          97.50
+##        &lt;NA&gt;     25                               2.50         100.00
+##       Total   1000    100.00         100.00    100.00         100.00
+## 
+## tobacco$smoker  
+## Type: Factor  
+## 
+##               Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------ --------- -------------- --------- --------------
+##         Yes    298     29.80          29.80     29.80          29.80
+##          No    702     70.20         100.00     70.20         100.00
+##        &lt;NA&gt;      0                               0.00         100.00
+##       Total   1000    100.00         100.00    100.00         100.00
+## 
+## tobacco$diseased  
+## Type: Factor  
+## 
+##               Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------- ------ --------- -------------- --------- --------------
+##         Yes    224     22.40          22.40     22.40          22.40
+##          No    776     77.60         100.00     77.60         100.00
+##        &lt;NA&gt;      0                               0.00         100.00
+##       Total   1000    100.00         100.00    100.00         100.00
+## 
+## tobacco$disease  
+## Type: Character  
+## 
+##                         Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## --------------------- ------ --------- -------------- --------- --------------
+##                Cancer     34     15.32          15.32      3.40           3.40
+##           Cholesterol     21      9.46          24.77      2.10           5.50
+##              Diabetes     14      6.31          31.08      1.40           6.90
+##             Digestive     12      5.41          36.49      1.20           8.10
+##               Hearing     14      6.31          42.79      1.40           9.50
+##                 Heart     20      9.01          51.80      2.00          11.50
+##          Hypertension     36     16.22          68.02      3.60          15.10
+##           Hypotension     11      4.95          72.97      1.10          16.20
+##       Musculoskeletal     19      8.56          81.53      1.90          18.10
+##          Neurological     10      4.50          86.04      1.00          19.10
+##                 Other      2      0.90          86.94      0.20          19.30
+##             Pulmonary     20      9.01          95.95      2.00          21.30
+##                Vision      9      4.05         100.00      0.90          22.20
+##                  &lt;NA&gt;    778                              77.80         100.00
+##                 Total   1000    100.00         100.00    100.00         100.00
+## 
+## tobacco$samp.wgts  
+## Type: Numeric  
+## 
+##                           Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ----------------------- ------ --------- -------------- --------- --------------
+##       0.861423220973783    267     26.70          26.70     26.70          26.70
+##        1.04417670682731    249     24.90          51.60     24.90          51.60
+##        1.04938271604938    324     32.40          84.00     32.40          84.00
+##                  1.0625    160     16.00         100.00     16.00         100.00
+##                    &lt;NA&gt;      0                               0.00         100.00
+##                   Total   1000    100.00         100.00    100.00         100.00</code></pre>
+<p>为避免结果混乱，忽略具有超过25个不同值的数值列。可以通过使用st_options()来更改这个阈值；例如，将其更改为10，我们将使用st_options(freq.ignore.threshold = 10)。</p>
+<p>数据框tobacco包含模拟数据，并包含在包中。另一个包含的模拟数据框是exams。两者都有法语版本（tabagisme、examens）。</p>
+</div>
+<div id="子集过滤频率表" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> 子集（过滤）频率表<a href="summarytools-概述.html#子集过滤频率表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>参数rows允许对频率表进行子集（过滤）；我们可以以不同的方式使用此参数：</p>
+<ol style="list-style-type: decimal">
+<li>通过它们的出现顺序对行进行过滤，使用数值向量；rows = 1:10将仅显示前10个值的频率。为了考虑未显示值的频率，“（Other）”行会自动添加</li>
+<li>通过名称对行进行过滤，可以使用</li>
+</ol>
+<ul>
+<li>指定要保留的所有行名的字符向量</li>
+<li>单个字符字符串，将用作正则表达式（有关此主题的更多信息，请参阅?regex）</li>
+</ul>
+<p>显示最常见的值</p>
+<p>通过组合order和rows参数，我们可以轻松地将结果过滤为显示因子中最常见的5个值：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="summarytools-概述.html#cb14-1" tabindex="-1"></a><span class="fu">freq</span>(tobacco<span class="sc">$</span>disease, </span>
+<span id="cb14-2"><a href="summarytools-概述.html#cb14-2" tabindex="-1"></a>     <span class="at">order    =</span> <span class="st">&quot;freq&quot;</span>,</span>
+<span id="cb14-3"><a href="summarytools-概述.html#cb14-3" tabindex="-1"></a>     <span class="at">rows     =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb14-4"><a href="summarytools-概述.html#cb14-4" tabindex="-1"></a>     <span class="at">headings =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##                      Freq   % Valid   % Valid Cum.   % Total   % Total Cum.
+## ------------------ ------ --------- -------------- --------- --------------
+##       Hypertension     36     16.22          16.22      3.60           3.60
+##             Cancer     34     15.32          31.53      3.40           7.00
+##        Cholesterol     21      9.46          40.99      2.10           9.10
+##              Heart     20      9.01          50.00      2.00          11.10
+##          Pulmonary     20      9.01          59.01      2.00          13.10
+##            (Other)     91     40.99         100.00      9.10          22.20
+##               &lt;NA&gt;    778                              77.80         100.00
+##              Total   1000    100.00         100.00    100.00         100.00</code></pre>
+</div>
+<div id="可折叠节" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> 可折叠节<a href="summarytools-概述.html#可折叠节" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>在生成html结果时，使用print()、view()或stview()与collapse = TRUE参数可获得可折叠节；单击标题部分中的变量名将折叠/显示频率表（结果未显示）。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="summarytools-概述.html#cb16-1" tabindex="-1"></a><span class="fu">view</span>(<span class="fu">freq</span>(tobacco), <span class="at">collapse =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Variable(s) ignored: age, BMI, cigs.per.day</code></pre>
+<pre><code>## Output file written: /var/folders/dg/jgfdmlcn4dj4j5f5yls_lhph0000gn/T//Rtmp2pmXmD/file93804f24b0d2.html</code></pre>
+<pre><code>## Switching method to &#39;browser&#39;</code></pre>
+<pre><code>## Output file appended: /private/var/folders/dg/jgfdmlcn4dj4j5f5yls_lhph0000gn/T/Rtmp2pmXmD/file93804f24b0d2.html</code></pre>
+</div>
+</div>
+<div id="交叉表ctable" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> 3. 交叉表：ctable()<a href="summarytools-概述.html#交叉表ctable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ctable()生成两个分类变量的交叉表（联合频率）。</p>
+<p>使用模拟数据框tobacco，我们将对两个分类变量smoker和diseased进行交叉表分析。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="summarytools-概述.html#cb21-1" tabindex="-1"></a><span class="fu">ctable</span>(<span class="at">x =</span> tobacco<span class="sc">$</span>smoker, </span>
+<span id="cb21-2"><a href="summarytools-概述.html#cb21-2" tabindex="-1"></a>       <span class="at">y =</span> tobacco<span class="sc">$</span>diseased, </span>
+<span id="cb21-3"><a href="summarytools-概述.html#cb21-3" tabindex="-1"></a>       <span class="at">prop =</span> <span class="st">&quot;r&quot;</span>)   <span class="co"># 显示行比例</span></span></code></pre></div>
+<pre><code>## Cross-Tabulation, Row Proportions  
+## smoker * diseased  
+## Data Frame: tobacco  
+## 
+## -------- ---------- ------------- ------------- ---------------
+##            diseased           Yes            No           Total
+##   smoker                                                       
+##      Yes              125 (41.9%)   173 (58.1%)    298 (100.0%)
+##       No               99 (14.1%)   603 (85.9%)    702 (100.0%)
+##    Total              224 (22.4%)   776 (77.6%)   1000 (100.0%)
+## -------- ---------- ------------- ------------- ---------------</code></pre>
+<div id="行列或总体比例" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 行、列或总体比例<a href="summarytools-概述.html#行列或总体比例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>默认情况下显示行比例。要显示列或总体比例，请使用prop = “c”或prop = “t”。要完全省略比例，请使用prop = “n”。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="summarytools-概述.html#cb23-1" tabindex="-1"></a><span class="fu">ctable</span>(<span class="at">x =</span> tobacco<span class="sc">$</span>smoker, </span>
+<span id="cb23-2"><a href="summarytools-概述.html#cb23-2" tabindex="-1"></a>       <span class="at">y =</span> tobacco<span class="sc">$</span>diseased, </span>
+<span id="cb23-3"><a href="summarytools-概述.html#cb23-3" tabindex="-1"></a>       <span class="at">prop =</span> <span class="st">&quot;c&quot;</span>)   <span class="co"># 显示行比例</span></span></code></pre></div>
+<pre><code>## Cross-Tabulation, Column Proportions  
+## smoker * diseased  
+## Data Frame: tobacco  
+## 
+## -------- ---------- -------------- -------------- ---------------
+##            diseased            Yes             No           Total
+##   smoker                                                         
+##      Yes              125 ( 55.8%)   173 ( 22.3%)    298 ( 29.8%)
+##       No               99 ( 44.2%)   603 ( 77.7%)    702 ( 70.2%)
+##    Total              224 (100.0%)   776 (100.0%)   1000 (100.0%)
+## -------- ---------- -------------- -------------- ---------------</code></pre>
+</div>
+<div id="最小交叉表" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> 最小交叉表<a href="summarytools-概述.html#最小交叉表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>通过“关闭”所有可选功能，我们得到一个简单的“2 x 2”表格：</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="summarytools-概述.html#cb25-1" tabindex="-1"></a><span class="fu">with</span>(tobacco, </span>
+<span id="cb25-2"><a href="summarytools-概述.html#cb25-2" tabindex="-1"></a>     <span class="fu">print</span>(<span class="fu">ctable</span>(<span class="at">x =</span> smoker, </span>
+<span id="cb25-3"><a href="summarytools-概述.html#cb25-3" tabindex="-1"></a>                  <span class="at">y =</span> diseased, </span>
+<span id="cb25-4"><a href="summarytools-概述.html#cb25-4" tabindex="-1"></a>                  <span class="at">prop     =</span> <span class="st">&#39;n&#39;</span>,</span>
+<span id="cb25-5"><a href="summarytools-概述.html#cb25-5" tabindex="-1"></a>                  <span class="at">totals   =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb25-6"><a href="summarytools-概述.html#cb25-6" tabindex="-1"></a>                  <span class="at">headings =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb25-7"><a href="summarytools-概述.html#cb25-7" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">&quot;render&quot;</span>)</span>
+<span id="cb25-8"><a href="summarytools-概述.html#cb25-8" tabindex="-1"></a>)</span></code></pre></div>
+<div class="container st-container">
+<table class="table table-bordered st-table st-table-bordered st-cross-table ">
+<thead>
+<tr>
+<th></th>
+<th colspan="2" align="center" class="st-protect-top-border">diseased</th>
+</tr>
+<tr>
+<td align="center">
+<strong>smoker</strong>
+</td>
+<th colspan="1" align="center">Yes</th>
+<th colspan="1" align="center">No</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong align="center">Yes</strong>
+</td>
+<td>
+<span>125</span>
+</td>
+<td>
+<span>173</span>
+</td>
+</tr>
+<tr>
+<td>
+<strong align="center">No</strong>
+</td>
+<td>
+<span>99</span>
+</td>
+<td>
+<span>603</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 1.0.1 (<a href='https://www.r-project.org/'>R</a> version 4.2.1)<br/>2024-02-14</p>
+</div>
+</div>
+<div id="卡方检验𝛘²几率比和风险比" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> 卡方检验（𝛘²）、几率比和风险比<a href="summarytools-概述.html#卡方检验𝛘²几率比和风险比" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>要显示卡方统计量，请设置chisq = TRUE。对于2 x 2表格，使用OR和RR显示几率比和风险比（也称为相对风险），分别设置为TRUE，此时会显示95%置信区间；要使用不同的置信水平，请使用例如OR = .90。</p>
+<p>使用管道通常更容易生成ctable()结果。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="summarytools-概述.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb26-2"><a href="summarytools-概述.html#cb26-2" tabindex="-1"></a>tobacco <span class="sc">%$%</span>  <span class="co"># 类似于with(tobacco, ...)</span></span>
+<span id="cb26-3"><a href="summarytools-概述.html#cb26-3" tabindex="-1"></a>  <span class="fu">ctable</span>(<span class="at">x =</span> smoker, <span class="at">y =</span> diseased,</span>
+<span id="cb26-4"><a href="summarytools-概述.html#cb26-4" tabindex="-1"></a>         <span class="at">chisq =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-5"><a href="summarytools-概述.html#cb26-5" tabindex="-1"></a>         <span class="at">OR    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-6"><a href="summarytools-概述.html#cb26-6" tabindex="-1"></a>         <span class="at">RR    =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-7"><a href="summarytools-概述.html#cb26-7" tabindex="-1"></a>         <span class="at">headings =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a href="summarytools-概述.html#cb26-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">&quot;render&quot;</span>)</span></code></pre></div>
+<div class="container st-container">
+<table class="table table-bordered st-table st-table-bordered st-cross-table ">
+<thead>
+<tr>
+<th></th>
+<th colspan="8" align="center" class="st-protect-top-border">diseased</th>
+<th colspan="4"></th>
+</tr>
+<tr>
+<td align="center">
+<strong>smoker</strong>
+</td>
+<th colspan="4" align="center">Yes</th>
+<th colspan="4" align="center">No</th>
+<th colspan="4" align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong align="center">Yes</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">125</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">41.9%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">173</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">58.1%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">298</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">100.0%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">No</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">99</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">14.1%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">603</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">85.9%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">702</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">100.0%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Total</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">224</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">22.4%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">776</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">77.6%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">1000</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">100.0%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="100"><em><strong>&nbsp;&#935;<sup>2</sup></strong> = 91.7088&nbsp;&nbsp;&nbsp;<strong>df</strong> = 1&nbsp;&nbsp;&nbsp;<strong>p</strong> = .0000</em><br/><em><strong>O.R. </strong>(95% C.I.) = <strong>4.40</strong>&nbsp;&nbsp;(3.22 - 6.02)</em><br/>
+        <em><strong>R.R. </strong>(95% C.I.) = <strong>2.97</strong>&nbsp;&nbsp;(2.37 - 3.73)</em></td>
+</tr>
+</tfoot>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 1.0.1 (<a href='https://www.r-project.org/'>R</a> version 4.2.1)<br/>2024-02-14</p>
+</div>
+</div>
+</div>
+<div id="描述性统计-descr" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> 4. 描述性统计: descr()<a href="summarytools-概述.html#描述性统计-descr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>descr() 函数生成描述性/单变量统计信息，即常见的集中趋势统计和离散度量。它接受单个向量以及数据框作为输入；在后一种情况下，所有非数值列都会被忽略，并显示相应的消息。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="summarytools-概述.html#cb27-1" tabindex="-1"></a><span class="fu">descr</span>(iris)</span></code></pre></div>
+<pre><code>## Non-numerical variable(s) ignored: Species</code></pre>
+<pre><code>## Descriptive Statistics  
+## iris  
+## N: 150  
+## 
+##                     Petal.Length   Petal.Width   Sepal.Length   Sepal.Width
+## ----------------- -------------- ------------- -------------- -------------
+##              Mean           3.76          1.20           5.84          3.06
+##           Std.Dev           1.77          0.76           0.83          0.44
+##               Min           1.00          0.10           4.30          2.00
+##                Q1           1.60          0.30           5.10          2.80
+##            Median           4.35          1.30           5.80          3.00
+##                Q3           5.10          1.80           6.40          3.30
+##               Max           6.90          2.50           7.90          4.40
+##               MAD           1.85          1.04           1.04          0.44
+##               IQR           3.50          1.50           1.30          0.50
+##                CV           0.47          0.64           0.14          0.14
+##          Skewness          -0.27         -0.10           0.31          0.31
+##       SE.Skewness           0.20          0.20           0.20          0.20
+##          Kurtosis          -1.42         -1.36          -0.61          0.14
+##           N.Valid         150.00        150.00         150.00        150.00
+##         Pct.Valid         100.00        100.00         100.00        100.00</code></pre>
+<p>要关闭变量类型的消息，请使用 silent = TRUE。可以全局设置该选项，在本文档的其余部分中将不会显示该消息。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="summarytools-概述.html#cb30-1" tabindex="-1"></a><span class="fu">st_options</span>(<span class="at">descr.silent =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div id="转置和选择统计信息" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> 转置和选择统计信息<a href="summarytools-概述.html#转置和选择统计信息" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>结果可以通过使用 transpose = TRUE 进行转置，也可以使用 stats 参数选择统计信息：</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="summarytools-概述.html#cb31-1" tabindex="-1"></a><span class="fu">descr</span>(iris,</span>
+<span id="cb31-2"><a href="summarytools-概述.html#cb31-2" tabindex="-1"></a>      <span class="at">stats     =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>),</span>
+<span id="cb31-3"><a href="summarytools-概述.html#cb31-3" tabindex="-1"></a>      <span class="at">transpose =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb31-4"><a href="summarytools-概述.html#cb31-4" tabindex="-1"></a>      <span class="at">headings  =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##                      Mean   Std.Dev
+## ------------------ ------ ---------
+##       Petal.Length   3.76      1.77
+##        Petal.Width   1.20      0.76
+##       Sepal.Length   5.84      0.83
+##        Sepal.Width   3.06      0.44</code></pre>
+</div>
+</div>
+<div id="数据框摘要-dfsummary" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> 5. 数据框摘要: dfSummary()<a href="summarytools-概述.html#数据框摘要-dfsummary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>dfSummary() 创建一个摘要表，包含数据框中所有变量的统计信息、频率和图表。显示的信息是类型特定的（字符、因子、数值、日期），并根据不同值的数量而变化。</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="summarytools-概述.html#cb33-1" tabindex="-1"></a><span class="fu">view</span>(<span class="fu">dfSummary</span>(iris))</span></code></pre></div>
+<pre><code>## Switching method to &#39;browser&#39;</code></pre>
+<pre><code>## Output file written: /var/folders/dg/jgfdmlcn4dj4j5f5yls_lhph0000gn/T//Rtmp2pmXmD/file938024fc33d4.html</code></pre>
+<p>请注意使用 view() 而不是 View()。如果使用后者，则结果将显示在数据查看器中。</p>
+</div>
+<div id="可选统计信息" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> 可选统计信息<a href="summarytools-概述.html#可选统计信息" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>自从发布以来，这一功能已经多次被请求。在 1.0.0 版中引入，它可以控制要在统计/值列中显示的统计信息。</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="summarytools-概述.html#cb36-1" tabindex="-1"></a> <span class="fu">st_options</span>(</span>
+<span id="cb36-2"><a href="summarytools-概述.html#cb36-2" tabindex="-1"></a>  <span class="at">dfSummary.custom.1 =</span> </span>
+<span id="cb36-3"><a href="summarytools-概述.html#cb36-3" tabindex="-1"></a>    <span class="fu">expression</span>(</span>
+<span id="cb36-4"><a href="summarytools-概述.html#cb36-4" tabindex="-1"></a>      <span class="fu">paste</span>(</span>
+<span id="cb36-5"><a href="summarytools-概述.html#cb36-5" tabindex="-1"></a>        <span class="st">&quot;Q1 - Q3 :&quot;</span>,</span>
+<span id="cb36-6"><a href="summarytools-概述.html#cb36-6" tabindex="-1"></a>        <span class="fu">round</span>(</span>
+<span id="cb36-7"><a href="summarytools-概述.html#cb36-7" tabindex="-1"></a>          <span class="fu">quantile</span>(column_data, <span class="at">probs =</span> .<span class="dv">25</span>, <span class="at">type =</span> <span class="dv">2</span>, </span>
+<span id="cb36-8"><a href="summarytools-概述.html#cb36-8" tabindex="-1"></a>                   <span class="at">names =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">digits =</span> <span class="dv">1</span></span>
+<span id="cb36-9"><a href="summarytools-概述.html#cb36-9" tabindex="-1"></a>        ), <span class="st">&quot; - &quot;</span>,</span>
+<span id="cb36-10"><a href="summarytools-概述.html#cb36-10" tabindex="-1"></a>        <span class="fu">round</span>(</span>
+<span id="cb36-11"><a href="summarytools-概述.html#cb36-11" tabindex="-1"></a>          <span class="fu">quantile</span>(column_data, <span class="at">probs =</span> .<span class="dv">75</span>, <span class="at">type =</span> <span class="dv">2</span>, </span>
+<span id="cb36-12"><a href="summarytools-概述.html#cb36-12" tabindex="-1"></a>                   <span class="at">names =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">digits =</span> <span class="dv">1</span></span>
+<span id="cb36-13"><a href="summarytools-概述.html#cb36-13" tabindex="-1"></a>        )</span>
+<span id="cb36-14"><a href="summarytools-概述.html#cb36-14" tabindex="-1"></a>      )</span>
+<span id="cb36-15"><a href="summarytools-概述.html#cb36-15" tabindex="-1"></a>    )</span>
+<span id="cb36-16"><a href="summarytools-概述.html#cb36-16" tabindex="-1"></a>)</span>
+<span id="cb36-17"><a href="summarytools-概述.html#cb36-17" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="summarytools-概述.html#cb36-18" tabindex="-1"></a><span class="fu">print</span>(</span>
+<span id="cb36-19"><a href="summarytools-概述.html#cb36-19" tabindex="-1"></a>  <span class="fu">dfSummary</span>(iris, </span>
+<span id="cb36-20"><a href="summarytools-概述.html#cb36-20" tabindex="-1"></a>            <span class="at">varnumbers   =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-21"><a href="summarytools-概述.html#cb36-21" tabindex="-1"></a>            <span class="at">na.col       =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-22"><a href="summarytools-概述.html#cb36-22" tabindex="-1"></a>            <span class="at">style        =</span> <span class="st">&quot;multiline&quot;</span>,</span>
+<span id="cb36-23"><a href="summarytools-概述.html#cb36-23" tabindex="-1"></a>            <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-24"><a href="summarytools-概述.html#cb36-24" tabindex="-1"></a>            <span class="at">headings     =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb36-25"><a href="summarytools-概述.html#cb36-25" tabindex="-1"></a>            <span class="at">graph.magnif =</span> .<span class="dv">8</span>),</span>
+<span id="cb36-26"><a href="summarytools-概述.html#cb36-26" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;render&quot;</span></span>
+<span id="cb36-27"><a href="summarytools-概述.html#cb36-27" tabindex="-1"></a>)</span></code></pre></div>
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Variable</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Stats / Values</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Freqs (% of Valid)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Graph</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Valid</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">Sepal.Length
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 5.8 (0.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; med &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">4.3 &le; 5.8 &le; 7.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Q1 - Q3 : 5.1  -  6.4</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">35 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHwAAABaCAQAAADQ4voeAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfoAg4ILwi+CPb7AAAA/UlEQVR42u3bQQ6CMBBAUWq4I3fQ8+AdPKVuu2lDCFPG/v92aiL8ZGKD0PJdmB53n4Dhho+x1i/K4IPvnR+YV8DJ1IdbT3/LJbbG+5/wIzvqUfak6+WAUd+an8QPdBt21A2nMZwGG354Ocu6HoeH99fjnGt1D3bUDacxnMZwGsNpDKcxnMZwGsNpDKcxnObmBwPaop+WSBse/Yc1dtQNpzGcxnAaw2kMpzGcxnAaw2kMpzGcxnAaw2kMpzGcJu3d0p7TO6Kq28t/GX7FfihHfVnm21R3ODzrJvcI2FE3nMZwGsNpDKcxnKbU1yXvyS9SntX1eJm8tQk76obT/ABE4BkYmSrGdQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNC0wMi0xNFQwODo0NzowOCswMDowMEz3gTYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjQtMDItMTRUMDg6NDc6MDgrMDA6MDA9qjmKAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">150
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Sepal.Width
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3.1 (0.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; med &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2 &le; 3 &le; 4.4</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Q1 - Q3 : 2.8  -  3.3</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">23 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHwAAABaCAQAAADQ4voeAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfoAg4ILwi+CPb7AAABOUlEQVR42u2bSxKCMBAFjcUduYOeB+/gKXUbGZAiNeQz/XqHixQtryaTBNLnxuTe+gYkLvE6TPlFcht22SgdT7/hC8lvaioe5YB5df1ubb0CG3WJ05A4DYnTkDgNidOQOA2J05A4DYnTkDgNidOQOI3LTlIsfR0rVRSfzS8tj5VcxJcB3y5weuK9HxFasMVN4jQkTkPiNCROo2KvvoVtdmstWxqLt2t1sVGXOA2J05A4DYnTwIoXtKwjbia7iI+4mWzBRl3iNLDijTciLLX2ZLoTrzVjKOr9ck34BxC/JvzYqGPFD6IeY0FSIN7bu0p+YKMucRoSp/FT1eNOXgfiMXbTisTHwGPZMqS4Ry6HFLec/wggiPj5xlrTWTw24p+FP7D4/xKY8r/lFbyBeWRPPAV33QVb3CRO4wvKpyjE7DmcSAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNC0wMi0xNFQwODo0NzowOCswMDowMEz3gTYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjQtMDItMTRUMDg6NDc6MDgrMDA6MDA9qjmKAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">150
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Petal.Length
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 3.8 (1.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; med &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1 &le; 4.3 &le; 6.9</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Q1 - Q3 : 1.6  -  5.1</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">43 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHwAAABaCAQAAADQ4voeAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfoAg4ILwi+CPb7AAABKUlEQVR42u2cURKCIBQAs/GO3aHOo3folPVLYSkFIuzuX9k0b4fn48mAw+PE5Fw7AMUV34cx/DAv3PC3oXaI+Qj1xtdLl7ef3mvHWgxsqitOQ3EaitNQnIbiNBSnoTgNxWkoTkNxGorTUJyG4jQUp6E4DcVpjP//xe9Mm/aaldmMUlV8aevJXptRsKmuOA3FaShOo/I8voW4zcnR0jQgXqalaUA8JkcONCmeIwewxU1xGljx1eI2dXpOZVX8En3TxzkVbKorTmO3zm3bimqH4kcrk9hUV5yG4jQUp6E4DcVpNLm8HJO+TtSJePoDUCHxIzyELsQQ5ECxEa//RpnvEWCLm+I0FKeRpaofYfKqIn6EySuVIRysucGRS+EaNDBD564fwRY3xWk8Ad1MJCSvl16JAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI0LTAyLTE0VDA4OjQ3OjA4KzAwOjAwTPeBNgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNC0wMi0xNFQwODo0NzowOCswMDowMD2qOYoAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">150
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Petal.Width
+[numeric]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Mean (sd) : 1.2 (0.8)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; med &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">0.1 &le; 1.3 &le; 2.5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Q1 - Q3 : 0.3  -  1.8</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">22 distinct values</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAHwAAABaCAQAAADQ4voeAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfoAg4ILwi+CPb7AAABOElEQVR42u2bWw7CIBBFxXSP7kHX0+7BVeovfegEKQPjuefP2AgnnQ63ENPrwuTaewISl7gPU/5hOXjgH6n3FM8j15vWX902lz57z7UZ2FKXOA2J05A4DYnTkDgNidOQOA2J05A4DYnTkDgNidOQOA2J05jqf6KUeYjD6A7iYxxGY0td4jQkTkPiNCROAyveJbLu2eb39tl9EPF1evfI7thSlzgN8xn3bztHo54/rinu33b2o7YYF1vqEqchcRqDRFYba1ktXQDDiNvLatnCiy11rHiYUt8yV/7/O6x4bahVqbejtijDivd6w3MWH/P+OoiPcexvg21uEqchcRoSp4EVD/t2ZnOQIbPNqD8W/54gi8Xbn2r5UCweI4nbYJubxGmkvFctQTYRfuWeteH0564fwZa6xGm8AfaIKSh4b+2tAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI0LTAyLTE0VDA4OjQ3OjA4KzAwOjAwTPeBNgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNC0wMi0xNFQwODo0NzowOCswMDowMD2qOYoAAAA9dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IDIwMDcgQXBwbGUgSW5jLiwgYWxsIHJpZ2h0cyByZXNlcnZlZC6eZtwpAAAAI3RFWHRpY2M6ZGVzY3JpcHRpb24AR2VuZXJpYyBSR0IgUHJvZmlsZRqnOI4AAAAASUVORK5CYII="></td>
+      <td align="center">150
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Species
+[factor]</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. setosa</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. versicolor</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. virginica</td></tr></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">33.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">33.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">50</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">33.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADUAAABACAQAAAAQAPeJAAAAAmJLR0QA/4ePzL8AAAAHdElNRQfoAg4ILwi+CPb7AAAAeUlEQVRYw+3WwQ2AMAiFYTDu6A7uozt0Sr2iSZOmRUzo/25c+A7vAHpJVJYwKSm12uF0L27XCiWyuULlMeXsCgoKCmpm6nVESt+Wpqi9htq9pha7fYKuDv+nkN8CCgoKCsoj/BaD4eAPBgoKCgoqJH8d/G+Ts6tA6gYFthCwGydkBAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNC0wMi0xNFQwODo0NzowOCswMDowMEz3gTYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjQtMDItMTRUMDg6NDc6MDgrMDA6MDA9qjmKAAAAPXRFWHRpY2M6Y29weXJpZ2h0AENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4sIGFsbCByaWdodHMgcmVzZXJ2ZWQunmbcKQAAACN0RVh0aWNjOmRlc2NyaXB0aW9uAEdlbmVyaWMgUkdCIFByb2ZpbGUapziOAAAAAElFTkSuQmCC"></td>
+      <td align="center">150
+(100.0%)</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href='https://github.com/dcomtois/summarytools'>summarytools</a> 1.0.1 (<a href='https://www.r-project.org/'>R</a> version 4.2.1)<br/>2024-02-14</p>
+</div>
+</div>
+<div id="grouped-statistics" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> 6.Grouped Statistics<a href="summarytools-概述.html#grouped-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>stby() 函数是 summarytools 包中的一个函数，用于生成分组统计信息。它的使用方式与基本的 by() 函数相同，但为了产生最佳结果，stby() 做了一些优化。下面是一些示例以及相应的输出。</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="summarytools-概述.html#cb37-1" tabindex="-1"></a><span class="co"># 分组统计：按照鸢尾花的不同种类计算描述统计信息</span></span>
+<span id="cb37-2"><a href="summarytools-概述.html#cb37-2" tabindex="-1"></a>(iris_stats_by_species <span class="ot">&lt;-</span> <span class="fu">stby</span>(<span class="at">data      =</span> iris, </span>
+<span id="cb37-3"><a href="summarytools-概述.html#cb37-3" tabindex="-1"></a>                               <span class="at">INDICES   =</span> iris<span class="sc">$</span>Species, </span>
+<span id="cb37-4"><a href="summarytools-概述.html#cb37-4" tabindex="-1"></a>                               <span class="at">FUN       =</span> descr, </span>
+<span id="cb37-5"><a href="summarytools-概述.html#cb37-5" tabindex="-1"></a>                               <span class="at">stats     =</span> <span class="st">&quot;common&quot;</span>, </span>
+<span id="cb37-6"><a href="summarytools-概述.html#cb37-6" tabindex="-1"></a>                               <span class="at">transpose =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## Descriptive Statistics  
+## iris  
+## Group: Species = setosa  
+## N: 50  
+## 
+##                      Mean   Std.Dev    Min   Median    Max   N.Valid   Pct.Valid
+## ------------------ ------ --------- ------ -------- ------ --------- -----------
+##       Petal.Length   1.46      0.17   1.00     1.50   1.90     50.00      100.00
+##        Petal.Width   0.25      0.11   0.10     0.20   0.60     50.00      100.00
+##       Sepal.Length   5.01      0.35   4.30     5.00   5.80     50.00      100.00
+##        Sepal.Width   3.43      0.38   2.30     3.40   4.40     50.00      100.00
+## 
+## Group: Species = versicolor  
+## N: 50  
+## 
+##                      Mean   Std.Dev    Min   Median    Max   N.Valid   Pct.Valid
+## ------------------ ------ --------- ------ -------- ------ --------- -----------
+##       Petal.Length   4.26      0.47   3.00     4.35   5.10     50.00      100.00
+##        Petal.Width   1.33      0.20   1.00     1.30   1.80     50.00      100.00
+##       Sepal.Length   5.94      0.52   4.90     5.90   7.00     50.00      100.00
+##        Sepal.Width   2.77      0.31   2.00     2.80   3.40     50.00      100.00
+## 
+## Group: Species = virginica  
+## N: 50  
+## 
+##                      Mean   Std.Dev    Min   Median    Max   N.Valid   Pct.Valid
+## ------------------ ------ --------- ------ -------- ------ --------- -----------
+##       Petal.Length   5.55      0.55   4.50     5.55   6.90     50.00      100.00
+##        Petal.Width   2.03      0.27   1.40     2.00   2.50     50.00      100.00
+##       Sepal.Length   6.59      0.64   4.90     6.50   7.90     50.00      100.00
+##        Sepal.Width   2.97      0.32   2.20     3.00   3.80     50.00      100.00</code></pre>
+<p>此外，还有一些其他用法，包括 stby() 与 ctable() 的结合使用，以及特殊情况下 descr() 与 stby() 的结合使用，这些情况在示例中有所提及。</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="summarytools-概述.html#cb39-1" tabindex="-1"></a><span class="fu">with</span>(tobacco, </span>
+<span id="cb39-2"><a href="summarytools-概述.html#cb39-2" tabindex="-1"></a>     <span class="fu">stby</span>(<span class="at">data    =</span> BMI, </span>
+<span id="cb39-3"><a href="summarytools-概述.html#cb39-3" tabindex="-1"></a>          <span class="at">INDICES =</span> age.gr, </span>
+<span id="cb39-4"><a href="summarytools-概述.html#cb39-4" tabindex="-1"></a>          <span class="at">FUN     =</span> descr,</span>
+<span id="cb39-5"><a href="summarytools-概述.html#cb39-5" tabindex="-1"></a>          <span class="at">stats   =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;sd&quot;</span>, <span class="st">&quot;min&quot;</span>, <span class="st">&quot;med&quot;</span>, <span class="st">&quot;max&quot;</span>))</span>
+<span id="cb39-6"><a href="summarytools-概述.html#cb39-6" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Descriptive Statistics  
+## BMI by age.gr  
+## Data Frame: tobacco  
+## N: 258  
+## 
+##                 18-34   35-50   51-70    71 +
+## ------------- ------- ------- ------- -------
+##          Mean   23.84   25.11   26.91   27.45
+##       Std.Dev    4.23    4.34    4.26    4.37
+##           Min    8.83   10.35    9.01   16.36
+##        Median   24.04   25.11   26.77   27.52
+##           Max   34.84   39.44   39.21   38.37</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="summarytools-概述.html#cb41-1" tabindex="-1"></a><span class="fu">stby</span>(<span class="at">data    =</span> <span class="fu">list</span>(<span class="at">x =</span> tobacco<span class="sc">$</span>smoker, <span class="at">y =</span> tobacco<span class="sc">$</span>diseased), </span>
+<span id="cb41-2"><a href="summarytools-概述.html#cb41-2" tabindex="-1"></a>     <span class="at">INDICES =</span> tobacco<span class="sc">$</span>gender, </span>
+<span id="cb41-3"><a href="summarytools-概述.html#cb41-3" tabindex="-1"></a>     <span class="at">FUN     =</span> ctable)</span></code></pre></div>
+<pre><code>## Cross-Tabulation, Row Proportions  
+## smoker * diseased  
+## Data Frame: tobacco  
+## Group: gender = F  
+## 
+## -------- ---------- ------------- ------------- --------------
+##            diseased           Yes            No          Total
+##   smoker                                                      
+##      Yes               62 (42.2%)    85 (57.8%)   147 (100.0%)
+##       No               49 (14.3%)   293 (85.7%)   342 (100.0%)
+##    Total              111 (22.7%)   378 (77.3%)   489 (100.0%)
+## -------- ---------- ------------- ------------- --------------
+## 
+## Group: gender = M  
+## 
+## -------- ---------- ------------- ------------- --------------
+##            diseased           Yes            No          Total
+##   smoker                                                      
+##      Yes               63 (44.1%)    80 (55.9%)   143 (100.0%)
+##       No               47 (13.6%)   299 (86.4%)   346 (100.0%)
+##    Total              110 (22.5%)   379 (77.5%)   489 (100.0%)
+## -------- ---------- ------------- ------------- --------------</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="summarytools-概述.html#cb43-1" tabindex="-1"></a><span class="co"># or equivalently</span></span>
+<span id="cb43-2"><a href="summarytools-概述.html#cb43-2" tabindex="-1"></a><span class="fu">with</span>(tobacco, </span>
+<span id="cb43-3"><a href="summarytools-概述.html#cb43-3" tabindex="-1"></a>     <span class="fu">stby</span>(<span class="at">data    =</span> <span class="fu">list</span>(<span class="at">x =</span> smoker, <span class="at">y =</span> diseased), </span>
+<span id="cb43-4"><a href="summarytools-概述.html#cb43-4" tabindex="-1"></a>          <span class="at">INDICES =</span> gender, </span>
+<span id="cb43-5"><a href="summarytools-概述.html#cb43-5" tabindex="-1"></a>          <span class="at">FUN     =</span> ctable))</span></code></pre></div>
+<pre><code>## Cross-Tabulation, Row Proportions  
+## smoker * diseased  
+## Data Frame: tobacco  
+## Group: gender = F  
+## 
+## -------- ---------- ------------- ------------- --------------
+##            diseased           Yes            No          Total
+##   smoker                                                      
+##      Yes               62 (42.2%)    85 (57.8%)   147 (100.0%)
+##       No               49 (14.3%)   293 (85.7%)   342 (100.0%)
+##    Total              111 (22.7%)   378 (77.3%)   489 (100.0%)
+## -------- ---------- ------------- ------------- --------------
+## 
+## Group: gender = M  
+## 
+## -------- ---------- ------------- ------------- --------------
+##            diseased           Yes            No          Total
+##   smoker                                                      
+##      Yes               63 (44.1%)    80 (55.9%)   143 (100.0%)
+##       No               47 (13.6%)   299 (86.4%)   346 (100.0%)
+##    Total              110 (22.5%)   379 (77.5%)   489 (100.0%)
+## -------- ---------- ------------- ------------- --------------</code></pre>
+</div>
+<div id="分组统计group_by" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> 7. 分组统计：group_by()<a href="summarytools-概述.html#分组统计group_by" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>要使用 freq()、descr() 或 dfSummary() 创建分组统计信息，可以使用 dplyr 的 group_by() 作为 stby() 的替代方法。除了语法上的差异之外，一个关键区别是 group_by() 将分组变量中的 NA 值视为有效类别，尽管会发出警告建议使用 forcats::fct_explicit_na 将 NA 显式地表示为因子。遵循这个建议，我们可以这样做：</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="summarytools-概述.html#cb45-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="summarytools-概述.html#cb49-1" tabindex="-1"></a>tobacco<span class="sc">$</span>gender <span class="sc">%&lt;&gt;%</span> forcats<span class="sc">::</span><span class="fu">fct_explicit_na</span>()</span></code></pre></div>
+<pre><code>## Warning: `fct_explicit_na()` was deprecated in forcats 1.0.0.
+## ℹ Please use `fct_na_value_to_level()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="summarytools-概述.html#cb51-1" tabindex="-1"></a>tobacco <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="summarytools-概述.html#cb51-2" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-3"><a href="summarytools-概述.html#cb51-3" tabindex="-1"></a>  <span class="fu">descr</span>(<span class="at">stats =</span> <span class="st">&quot;fivenum&quot;</span>)</span></code></pre></div>
+<pre><code>## Descriptive Statistics  
+## tobacco  
+## Group: gender = F  
+## N: 489  
+## 
+##                  age     BMI   cigs.per.day   samp.wgts
+## ------------ ------- ------- -------------- -----------
+##          Min   18.00    9.01           0.00        0.86
+##           Q1   34.00   22.98           0.00        0.86
+##       Median   50.00   25.87           0.00        1.04
+##           Q3   66.00   29.48          10.50        1.05
+##          Max   80.00   39.44          40.00        1.06
+## 
+## Group: gender = M  
+## N: 489  
+## 
+##                  age     BMI   cigs.per.day   samp.wgts
+## ------------ ------- ------- -------------- -----------
+##          Min   18.00    8.83           0.00        0.86
+##           Q1   34.00   22.52           0.00        0.86
+##       Median   49.50   25.14           0.00        1.04
+##           Q3   66.00   27.96          11.00        1.05
+##          Max   80.00   36.76          40.00        1.06
+## 
+## Group: gender = (Missing)  
+## N: 22  
+## 
+##                  age     BMI   cigs.per.day   samp.wgts
+## ------------ ------- ------- -------------- -----------
+##          Min   19.00   20.24           0.00        0.86
+##           Q1   36.00   24.97           0.00        1.04
+##       Median   55.50   27.16           0.00        1.05
+##           Q3   64.00   30.23          10.00        1.05
+##          Max   80.00   32.43          28.00        1.06</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="数据科学的其他话题.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-绘图.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

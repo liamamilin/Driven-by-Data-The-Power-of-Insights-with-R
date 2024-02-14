@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Driven by Data: The Power of Insights with R</title>
+  <meta name="description" content="Driven by Data: The Power of Insights with R" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Driven by Data: The Power of Insights with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Driven by Data: The Power of Insights with R" />
+  
+  
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="数据.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Driven by Data: The Power of Insights with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#一个简单的例子"><i class="fa fa-check"></i><b>1.1</b> 一个简单的例子</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#数据分析的4原则"><i class="fa fa-check"></i><b>1.2</b> 数据分析的4原则:</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#sumamry"><i class="fa fa-check"></i><b>1.3</b> sumamry</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#数据可视化"><i class="fa fa-check"></i><b>1.3.1</b> 数据可视化</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#数据处理"><i class="fa fa-check"></i><b>1.3.2</b> 数据处理</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#数据探索"><i class="fa fa-check"></i><b>1.3.3</b> 数据探索</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#数据整理"><i class="fa fa-check"></i><b>1.3.4</b> 数据整理</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#多数据集合并"><i class="fa fa-check"></i><b>1.3.5</b> 多数据集合并</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#字符串"><i class="fa fa-check"></i><b>1.3.6</b> 字符串</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#因子"><i class="fa fa-check"></i><b>1.3.7</b> 因子</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#时间日期"><i class="fa fa-check"></i><b>1.3.8</b> 时间日期</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#图形细节调整"><i class="fa fa-check"></i><b>1.3.9</b> 图形细节调整</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数据.html"><a href="数据.html"><i class="fa fa-check"></i><b>2</b> 数据</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数据.html"><a href="数据.html#什么是数据"><i class="fa fa-check"></i><b>2.1</b> 什么是数据</a></li>
+<li class="chapter" data-level="2.2" data-path="数据.html"><a href="数据.html#不同种类数据"><i class="fa fa-check"></i><b>2.2</b> 不同种类数据</a></li>
+<li class="chapter" data-level="2.3" data-path="数据.html"><a href="数据.html#关于变量"><i class="fa fa-check"></i><b>2.3</b> 关于变量</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="数据转换.html"><a href="数据转换.html"><i class="fa fa-check"></i><b>3</b> 数据转换</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="数据转换.html"><a href="数据转换.html#data-transformation"><i class="fa fa-check"></i><b>3.1</b> Data transformation</a></li>
+<li class="chapter" data-level="3.2" data-path="数据转换.html"><a href="数据转换.html#什么是tidy整齐的数据"><i class="fa fa-check"></i><b>3.2</b> 什么是tidy(整齐)的数据</a></li>
+<li class="chapter" data-level="3.3" data-path="数据转换.html"><a href="数据转换.html#pivot_longer"><i class="fa fa-check"></i><b>3.3</b> pivot_longer</a></li>
+<li class="chapter" data-level="3.4" data-path="数据转换.html"><a href="数据转换.html#pivot_wider"><i class="fa fa-check"></i><b>3.4</b> pivot_wider</a></li>
+<li class="chapter" data-level="3.5" data-path="数据转换.html"><a href="数据转换.html#常用数据处理函数"><i class="fa fa-check"></i><b>3.5</b> 常用数据处理函数</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="数据转换.html"><a href="数据转换.html#rename"><i class="fa fa-check"></i><b>3.5.1</b> rename</a></li>
+<li class="chapter" data-level="3.5.2" data-path="数据转换.html"><a href="数据转换.html#select"><i class="fa fa-check"></i><b>3.5.2</b> select</a></li>
+<li class="chapter" data-level="3.5.3" data-path="数据转换.html"><a href="数据转换.html#mutate"><i class="fa fa-check"></i><b>3.5.3</b> mutate</a></li>
+<li class="chapter" data-level="3.5.4" data-path="数据转换.html"><a href="数据转换.html#filter"><i class="fa fa-check"></i><b>3.5.4</b> filter</a></li>
+<li class="chapter" data-level="3.5.5" data-path="数据转换.html"><a href="数据转换.html#arrange"><i class="fa fa-check"></i><b>3.5.5</b> arrange</a></li>
+<li class="chapter" data-level="3.5.6" data-path="数据转换.html"><a href="数据转换.html#group_by-and-summarize"><i class="fa fa-check"></i><b>3.5.6</b> group_by and summarize</a></li>
+<li class="chapter" data-level="3.5.7" data-path="数据转换.html"><a href="数据转换.html#slice_max-slice_min"><i class="fa fa-check"></i><b>3.5.7</b> slice_max (slice_min)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="数据转换.html"><a href="数据转换.html#join"><i class="fa fa-check"></i><b>3.5.8</b> join</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="数据转换.html"><a href="数据转换.html#data-cleaning"><i class="fa fa-check"></i><b>3.6</b> Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="数据转换.html"><a href="数据转换.html#splitting-text"><i class="fa fa-check"></i><b>3.6.1</b> Splitting Text</a></li>
+<li class="chapter" data-level="3.6.2" data-path="数据转换.html"><a href="数据转换.html#replace-values"><i class="fa fa-check"></i><b>3.6.2</b> Replace Values</a></li>
+<li class="chapter" data-level="3.6.3" data-path="数据转换.html"><a href="数据转换.html#drop-columns"><i class="fa fa-check"></i><b>3.6.3</b> Drop Columns</a></li>
+<li class="chapter" data-level="3.6.4" data-path="数据转换.html"><a href="数据转换.html#drop-rows"><i class="fa fa-check"></i><b>3.6.4</b> Drop Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html"><i class="fa fa-check"></i><b>4</b> 数据科学的其他话题</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#定义数据科学问题"><i class="fa fa-check"></i><b>4.1</b> 定义数据科学问题</a></li>
+<li class="chapter" data-level="4.2" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#建模与统计推断"><i class="fa fa-check"></i><b>4.2</b> 建模与统计推断</a></li>
+<li class="chapter" data-level="4.3" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#因果推断"><i class="fa fa-check"></i><b>4.3</b> 因果推断</a></li>
+<li class="chapter" data-level="4.4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#分析结果展示"><i class="fa fa-check"></i><b>4.4</b> 分析结果展示</a></li>
+<li class="chapter" data-level="4.5" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#数据科学演讲"><i class="fa fa-check"></i><b>4.5</b> 数据科学演讲</a></li>
+<li class="chapter" data-level="4.6" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#可重复性"><i class="fa fa-check"></i><b>4.6</b> 可重复性</a></li>
+<li class="chapter" data-level="4.7" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#总结"><i class="fa fa-check"></i><b>4.7</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarytools-概述.html"><a href="summarytools-概述.html"><i class="fa fa-check"></i><b>5</b> 1. summarytools 概述</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#频率表freq"><i class="fa fa-check"></i><b>5.1</b> 2. 频率表：freq()</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#同时生成多个频率表"><i class="fa fa-check"></i><b>5.1.1</b> 同时生成多个频率表</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#子集过滤频率表"><i class="fa fa-check"></i><b>5.1.2</b> 子集（过滤）频率表</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可折叠节"><i class="fa fa-check"></i><b>5.1.3</b> 可折叠节</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#交叉表ctable"><i class="fa fa-check"></i><b>5.2</b> 3. 交叉表：ctable()</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#行列或总体比例"><i class="fa fa-check"></i><b>5.2.1</b> 行、列或总体比例</a></li>
+<li class="chapter" data-level="5.2.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#最小交叉表"><i class="fa fa-check"></i><b>5.2.2</b> 最小交叉表</a></li>
+<li class="chapter" data-level="5.2.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#卡方检验𝛘²几率比和风险比"><i class="fa fa-check"></i><b>5.2.3</b> 卡方检验（𝛘²）、几率比和风险比</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#描述性统计-descr"><i class="fa fa-check"></i><b>5.3</b> 4. 描述性统计: descr()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#转置和选择统计信息"><i class="fa fa-check"></i><b>5.3.1</b> 转置和选择统计信息</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="summarytools-概述.html"><a href="summarytools-概述.html#数据框摘要-dfsummary"><i class="fa fa-check"></i><b>5.4</b> 5. 数据框摘要: dfSummary()</a></li>
+<li class="chapter" data-level="5.5" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可选统计信息"><i class="fa fa-check"></i><b>5.5</b> 可选统计信息</a></li>
+<li class="chapter" data-level="5.6" data-path="summarytools-概述.html"><a href="summarytools-概述.html#grouped-statistics"><i class="fa fa-check"></i><b>5.6</b> 6.Grouped Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="summarytools-概述.html"><a href="summarytools-概述.html#分组统计group_by"><i class="fa fa-check"></i><b>5.7</b> 7. 分组统计：group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-绘图.html"><a href="r-绘图.html"><i class="fa fa-check"></i><b>6</b> R 绘图</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-绘图.html"><a href="r-绘图.html#词云"><i class="fa fa-check"></i><b>6.1</b> 词云</a></li>
+<li class="chapter" data-level="6.2" data-path="r-绘图.html"><a href="r-绘图.html#使用-plotly-创建交互式图表"><i class="fa fa-check"></i><b>6.2</b> 使用 Plotly 创建交互式图表</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="r-绘图.html"><a href="r-绘图.html#ggplot-图和plotly-图转换"><i class="fa fa-check"></i><b>6.2.1</b> ggplot 图和plotly 图转换</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-绘图.html"><a href="r-绘图.html#ggfortify"><i class="fa fa-check"></i><b>6.3</b> ggfortify</a></li>
+<li class="chapter" data-level="6.4" data-path="r-绘图.html"><a href="r-绘图.html#corrplot"><i class="fa fa-check"></i><b>6.4</b> corrplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="因果推断-1.html"><a href="因果推断-1.html"><i class="fa fa-check"></i><b>7</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="因果推断-1.html"><a href="因果推断-1.html#因果推断的基本概念"><i class="fa fa-check"></i><b>7.1</b> 因果推断的基本概念</a></li>
+<li class="chapter" data-level="7.2" data-path="因果推断-1.html"><a href="因果推断-1.html#r中的因果推断工具"><i class="fa fa-check"></i><b>7.2</b> R中的因果推断工具</a></li>
+<li class="chapter" data-level="7.3" data-path="因果推断-1.html"><a href="因果推断-1.html#匹配方法"><i class="fa fa-check"></i><b>7.3</b> 匹配方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="因果推断-1.html"><a href="因果推断-1.html#倾向得分匹配"><i class="fa fa-check"></i><b>7.3.1</b> 倾向得分匹配</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="因果推断-1.html"><a href="因果推断-1.html#工具变量法"><i class="fa fa-check"></i><b>7.4</b> 工具变量法</a></li>
+<li class="chapter" data-level="7.5" data-path="因果推断-1.html"><a href="因果推断-1.html#参考"><i class="fa fa-check"></i><b>7.5</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="process-mining.html"><a href="process-mining.html"><i class="fa fa-check"></i><b>8</b> Process mining</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="process-mining.html"><a href="process-mining.html#流程挖掘的基本概念"><i class="fa fa-check"></i><b>8.1</b> 流程挖掘的基本概念</a></li>
+<li class="chapter" data-level="8.2" data-path="process-mining.html"><a href="process-mining.html#r语言中的流程挖掘工具"><i class="fa fa-check"></i><b>8.2</b> R语言中的流程挖掘工具</a></li>
+<li class="chapter" data-level="8.3" data-path="process-mining.html"><a href="process-mining.html#数据准备"><i class="fa fa-check"></i><b>8.3</b> 数据准备</a></li>
+<li class="chapter" data-level="8.4" data-path="process-mining.html"><a href="process-mining.html#控制流挖掘"><i class="fa fa-check"></i><b>8.4</b> 控制流挖掘</a></li>
+<li class="chapter" data-level="8.5" data-path="process-mining.html"><a href="process-mining.html#性能分析"><i class="fa fa-check"></i><b>8.5</b> 性能分析</a></li>
+<li class="chapter" data-level="8.6" data-path="process-mining.html"><a href="process-mining.html#社会网络分析"><i class="fa fa-check"></i><b>8.6</b> 社会网络分析</a></li>
+<li class="chapter" data-level="8.7" data-path="process-mining.html"><a href="process-mining.html#参考-1"><i class="fa fa-check"></i><b>8.7</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>9</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性-feature-importance"><i class="fa fa-check"></i><b>9.1</b> 特征重要性 (Feature Importance)</a></li>
+<li class="chapter" data-level="9.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#偏差分析-partial-dependence-plots-pdp"><i class="fa fa-check"></i><b>9.2</b> 偏差分析 (Partial Dependence Plots, PDP)</a></li>
+<li class="chapter" data-level="9.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部解释"><i class="fa fa-check"></i><b>9.3</b> 局部解释</a></li>
+<li class="chapter" data-level="9.4" data-path="可解释机器学习.html"><a href="可解释机器学习.html#参考-2"><i class="fa fa-check"></i><b>9.4</b> 参考</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">Driven by Data: The Power of Insights with R</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Driven by Data: The Power of Insights with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Driven by Data: The Power of Insights with R</h1>
+<p class="author"><em><em>米霖</em></em></p>
+<p class="date"><em>2024</em></p>
+</div>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>尽管你可能已经听过‘数据分析’这个术语很多次，但你可能仍不清楚其含义。以下是Paul Velleman和David Hoaglin在他们的文章“数据分析”中对数据分析的描述，该文章发表在《当代统计透视》中。</p>
+<p>“作为统计学和不同应用领域之间的桥梁，数据分析面临着将数据转化为有用知识的挑战。数据分析融合了态度和过程，并依赖于精心选择的技术。这种态度体现了科学家对规律、模式和例外的好奇心。而这个过程则通过迭代地剥离模式，让我们能够在其中发现更微妙（通常更有趣）的模式。这些技术很少对数据做出假设，而是有意容纳意想不到的情况。”</p>
+<p>本质上，探索性数据分析（简称为EDA）可以被视为数字侦探工作。我们面对着一批或多批数据，试图揭示其中的模式。数据分析可以被视为侦探工作，因为它与侦探的工作有相似之处，例如著名的夏洛克·福尔摩斯，他通过收集不同的证据来揭示一个谜团（比如杀人犯的身份）。我们在数据分析中的目标是总结数字的一般结构。通过这样做，我们可以用一种相对简单的方式来描述数据所传达的信息。</p>
+<div id="一个简单的例子" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 一个简单的例子<a href="index.html#一个简单的例子" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>我们来看一个数据集, 其中显示了来自不同国家的美国移民在2008年的估计人数。该表列出了每个国家的名称、所属的世界地区以及2008年的移民数量。这些数据包含在LearnEDA软件包的移民数据集中。我已经列出了该数据表的前几行。 下载安装LearnEDAfunctions, 并且查看数据集.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="co"># library(remotes)</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" tabindex="-1"></a><span class="co"># install_github(&quot;bayesball/LearnEDAfunctions&quot;)</span></span>
+<span id="cb1-3"><a href="index.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="index.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(LearnEDAfunctions)</span></code></pre></div>
+<pre><code>## Loading required package: dplyr</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" tabindex="-1"></a><span class="fu">head</span>(immigrants)</span></code></pre></div>
+<pre><code>##          Country Region Count.1998 Count.2008
+## 1        Austria Europe        610       1505
+## 2        Belgium Europe        557        829
+## 3 Czechoslovakia Europe        931       1650
+## 4        Denmark Europe        447        551
+## 5         France Europe       2961       5246
+## 6        Germany Europe       6923       8456</code></pre>
+<p>显然，仅仅依靠表格很难理解这些移民数量的一般模式。我们有兴趣使用图表和摘要来更好地理解这些数据的总体结构。</p>
+<p>列出一些关于这些数据的一般性问题通常是很有帮助的。下面是一些在脑海中迅速浮现的问题：</p>
+<ol style="list-style-type: decimal">
+<li>哪些国家对美国的移民贡献最大？</li>
+<li>一个国家典型的移民人数是多少？</li>
+<li>亚洲国家的移民数量是多于还是少于欧洲国家？</li>
+<li>来自墨西哥的移民数量是否异常庞大？</li>
+<li>相对于其人口规模，哪些国家提供了大量移民？</li>
+</ol>
+<p>我们可以简单地将探索性数据分析(EDA)视为在数据中寻找模式(以及与这些模式的偏离)。这种类型的数据分析与我们大多数人学习统计学的方法根本不同。在统计中,我们假设数据代表从假设的正态分布总体中随机抽取的样本。根据这个假设，对总体平均数在样本足够大的时候就是样本的平均值。 这是一个简单的推理问题 , 我们可以用统计中的很多方法来进行回到, 例如假设检验, 置信区间等等.</p>
+<p>这种方法被称为验证性数据分析(CDA)。我们使用概率模型来分析数据。我们写下了一系列的概率模型，这些模型可以产生观测数据，我们通过估计这些模型的未知参数来了解这些数据。</p>
+<p>在EDA中，我们不对潜在种群做任何假设。我们不假设数据代表独立的观察或数据来自一个具有规定形状的总体。而验证性数据分析(CDA) 则是分析数据是否满足某种假设, 例如是否符合正态分布.</p>
+</div>
+<div id="数据分析的4原则" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 数据分析的4原则:<a href="index.html#数据分析的4原则" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Revelation : 在 EDA 中，强调使用图形来找到模式或显示匹配。有效地显示数据可以用数字不可能的方式传递信息。一个很好的经验法则是，在对任何汇总统计数据进行处理之前，始终使用图表来表示数据。</li>
+<li>Resistance: 在 EDA 中，我们希望描述大多数数据中的一般模式。在这项侦探工作中，我们不希望我们的搜索受到一些不寻常观察的不寻常的影响。因此，我们的探索性方法对异常值具有鲁棒性或不敏感性是非常重要的。 例如, 我们要描述一组数据的集中情况, 平均值不是一个鲁棒的统计量, 中位数 则是一个鲁棒的统计量.</li>
+<li>Reexpression : 我们将看到，数据所呈现的自然尺度并不总是显示或汇总数据的最佳尺度。在许多情况下，我们希望通过取平方根或对数将数据重新表示为一个新的尺度。</li>
+<li>Residual : 在一个典型的数据分析中，我们将找到一个通用的模式，我们称之为 FIT。FIT 的描述可能非常详细。但是在 EDA 中，我们希望在 FIT 的一般模式中寻找数据的偏差, 并且, 我们希望偏差尽可能的小. Residual = Data - Fit</li>
+</ol>
+<p>回到上面的数据, 我们继续进行分析, 让我们在分析我们的移民数据时说明一些 EDA 原则。我们从移民数量的图表开始。一个简单的图表是一个条形图，用一个点表示数字线上适当位置上的每个值。这些点在垂直方向上随机抖动，因此可以看到重叠的点。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ lubridate 1.9.3     ✔ tibble    3.2.1
+## ✔ purrr     1.0.2     ✔ tidyr     1.3.0
+## ✔ readr     2.1.4     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="index.html#cb11-1" tabindex="-1"></a><span class="fu">ggplot</span>(immigrants,</span>
+<span id="cb11-2"><a href="index.html#cb11-2" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Count<span class="fl">.2008</span>, <span class="at">y =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="index.html#cb11-3" tabindex="-1"></a>     <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="index.html#cb11-4" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb11-5"><a href="index.html#cb11-5" tabindex="-1"></a>     <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb11-6"><a href="index.html#cb11-6" tabindex="-1"></a>     <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>看看这张图表，我们发现大多数移民数量集中在0到30,000人之间，只有6个国家的移民数量较大。这实际上不是一个非常有用的图形显示，因为大多数数据都集中在值为零的位置。换句话说，这些数据严重向右倾斜。由于这种右倾的现象，我们所知道的是，有少数几个国家有大量的移民，而墨西哥有188,015名移民。我们在这个条形图中看到的是，原始数据(移民数量)并不是在图表中查看的最佳尺度。我们对数据进行取对数.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="index.html#cb12-1" tabindex="-1"></a><span class="co"># ggplot(immigrants,</span></span>
+<span id="cb12-2"><a href="index.html#cb12-2" tabindex="-1"></a><span class="co">#        aes(x = log(Count.2008), y = 1)) +</span></span>
+<span id="cb12-3"><a href="index.html#cb12-3" tabindex="-1"></a><span class="co">#      geom_jitter() + ylim(0, 2) +</span></span>
+<span id="cb12-4"><a href="index.html#cb12-4" tabindex="-1"></a><span class="co">#      theme(axis.title.y=element_blank(),</span></span>
+<span id="cb12-5"><a href="index.html#cb12-5" tabindex="-1"></a><span class="co">#      axis.text.y=element_blank(),</span></span>
+<span id="cb12-6"><a href="index.html#cb12-6" tabindex="-1"></a><span class="co">#      axis.ticks.y=element_blank())</span></span>
+<span id="cb12-7"><a href="index.html#cb12-7" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="index.html#cb12-8" tabindex="-1"></a>immigrants <span class="ot">&lt;-</span> <span class="fu">mutate</span>(immigrants,</span>
+<span id="cb12-9"><a href="index.html#cb12-9" tabindex="-1"></a>                     <span class="at">log.Count =</span> <span class="fu">log10</span>(Count<span class="fl">.2008</span>))</span>
+<span id="cb12-10"><a href="index.html#cb12-10" tabindex="-1"></a><span class="fu">ggplot</span>(immigrants,</span>
+<span id="cb12-11"><a href="index.html#cb12-11" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> log.Count, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="index.html#cb12-12" tabindex="-1"></a>     <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="index.html#cb12-13" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb12-14"><a href="index.html#cb12-14" tabindex="-1"></a>     <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb12-15"><a href="index.html#cb12-15" tabindex="-1"></a>     <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>这是一个更好的图形显示来查看这些数据。对数计数在2.50和5.20之间均匀分布，人们可以在数据中看到更多有趣的结构。特别是，我们可以看到一个在对数移民计数约为3附近的国家聚集，以及在对数计数约为4附近的第二个聚集。一个典型的对数移民计数大约为3.75。我们仍然可以看到墨西哥的大量对数计数为5.27；但现在我们也可以看到一个对应挪威的小对数计数为2.58。</p>
+<p>我们可以用3.75来总结这些数据-这是我们对这些数据的 FIT。我们可以通过从每个日志计数中减去 FIT 来计算残差: RESIDUAL = logCOUNT-FIT = logCOUNT-3.75. 计算残差, 并对残差进行可视化.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="index.html#cb13-1" tabindex="-1"></a>immigrants <span class="ot">&lt;-</span> <span class="fu">mutate</span>(immigrants,</span>
+<span id="cb13-2"><a href="index.html#cb13-2" tabindex="-1"></a>              <span class="at">Residual =</span> log.Count <span class="sc">-</span> <span class="fl">3.75</span>)</span>
+<span id="cb13-3"><a href="index.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="index.html#cb13-4" tabindex="-1"></a><span class="fu">ggplot</span>(immigrants,</span>
+<span id="cb13-5"><a href="index.html#cb13-5" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Residual, <span class="at">y =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="index.html#cb13-6" tabindex="-1"></a>     <span class="fu">geom_jitter</span>() <span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="index.html#cb13-7" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">axis.title.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb13-8"><a href="index.html#cb13-8" tabindex="-1"></a>     <span class="at">axis.text.y=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb13-9"><a href="index.html#cb13-9" tabindex="-1"></a>     <span class="at">axis.ticks.y=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>现在我们可以更详细地查看这些数据了。我们发现，在对数计数尺度上，有两个国家的移民计数比平均值小1；另外有一个国家（墨西哥）的移民计数约大于平均值1.5。这个残差图表明了对数计数与3.75平均值的接近程度。</p>
+<p>这个例子展示了我们一些EDA原则。</p>
+<ol style="list-style-type: decimal">
+<li>它展示了使用图形显示来观察数据的基本模式。</li>
+<li>它表明原始数据的尺度可能不是最适合查看数据的尺度，人们可以通过适当的转换（在这里是对数）来重新表达数据，以改善数据的呈现方式。</li>
+<li>人们可以通过“典型”值轻松总结重新表达的数据，并且可以计算出显示数据与这个典型值偏差的残差。</li>
+</ol>
+<p>我们学到了什么？让我们回到关于这些数据的问题，看看我们在这个简短的数据分析中学到了什么：</p>
+<ol style="list-style-type: decimal">
+<li>哪些国家为美国提供了最多的移民？</li>
+</ol>
+<p>答案：墨西哥是迄今为止向美国提供移民最多的国家。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>一个国家的典型移民数量是多少？</li>
+</ol>
+<p>答案：在对数尺度上，一个典型的移民计数是3.75。</p>
+<ol start="3" style="list-style-type: decimal">
+<li>亚洲国家提供的移民数量比欧洲国家多还是少？</li>
+</ol>
+<p>答案：我们在简要分析中没有涉及这个问题，但我们很快将讨论如何比较不同批次的数据。</p>
+<ol start="4" style="list-style-type: decimal">
+<li>。我们是否从墨西哥获得了异常数量的移民？</li>
+</ol>
+<p>答案：是的 - 这个分析证实了墨西哥正在提供大量的移民。</p>
+<ol start="5" style="list-style-type: decimal">
+<li>哪些国家相对于其人口规模提供了大量的移民？</li>
+</ol>
+<p>答案：为了回答这个问题，我们需要收集表格中国家的人口数据。这将是一项有趣的研究。</p>
+</div>
+<div id="sumamry" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> sumamry<a href="index.html#sumamry" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>总结的内容放在最前面, 没时间就直接看下面内容.</p>
+<div id="数据可视化" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> 数据可视化<a href="index.html#数据可视化" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>geom_point: 在绘图中添加点，关键参数包括 x、y、size、stroke、colour、alpha 和 shape。</li>
+<li>geom_smooth: 在 x-y 图中添加线条和置信区间，可以使用 se 参数关闭标准误差，可以使用 method 参数更改算法以生成线条，使用 linetype 参数可以生成虚线。</li>
+<li>geom_bar: 将值堆叠在一起以创建条形图（默认统计方法为 “count”，也可以更改为 “identity”，可能需要将 y = ..prop.. 来显示 y 值的比例）。位置参数 position 可以设置为 “stacked”，也可以设置为 “identity”、“dodge”、“fill”。</li>
+<li>geom_count: 使用数据帧中的离散行值制作条形图。使用 fill 参数填充条形图，使用 colour 参数设置边框颜色。</li>
+<li>geom_jitter: 类似于 geom_point()，但添加了随机性，可以使用 width 和 height 参数控制随机性（也可以使用 geom_point()，并设置 position = “jitter”）。</li>
+<li>geom_boxplot: 绘制箱线图。</li>
+<li>geom_polygon: 可以用于绘制点，需要使用从 map_data() 创建的对象。</li>
+<li>geom_abline: 使用 intercept 和 slope 参数创建线条。</li>
+<li>facet_wrap: 根据一个变量对多个图进行分面；scales = “free_x”（或“free”、“free_y”）是有帮助的参数。</li>
+<li>facet_grid: 根据一个或两个变量对多个图进行分面；space 是一个有用的参数（不在 facet_wrap() 内）。 patchwork 包也可以合并多幅图形.</li>
+<li>stat_count: 类似于 geom_bar()。</li>
+<li>stat_summary: 可以使用它来显示范围，例如使用 fun.ymin = min、fun.ymax = max 和 fun.y = median。</li>
+<li>stat_bin: 类似于 geom_histogram()。</li>
+<li>stat_smooth: 类似于 geom_smooth，但可以使用非标准的几何图形。</li>
+<li>位置调整：identity、dodge、fill。</li>
+<li>用于覆盖默认映射的方法。 coord_quickmap: 设置地图的长宽比。 coord_flip: 翻转 x 和 y 坐标。coord_polar: 使用极坐标 - 不经常使用。 coord_fixed: 固定 x 和 y 轴使其具有相同的刻度间距。</li>
+</ol>
+</div>
+<div id="数据处理" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> 数据处理<a href="index.html#数据处理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>过滤器（filter()）：根据一些条件过滤行</li>
+<li>排序（arrange()）：根据一些条件对行排序
+desc：降序排序而不是升序（通常与arrange或排名函数一起使用）</li>
+<li>选择（select()）：根据名称、位置或条件选择列</li>
+<li>辅助函数：everything、starts_with、ends_with、contains、matches：选择与正则表达式匹配的变量；num_range(“x”, 1:3)：匹配x1、x2和x3</li>
+<li>重命名（rename()）：重命名变量而不丢弃未指定的变量</li>
+<li>变异（mutate()）：更改列并添加新列</li>
+<li>分组（group_by()）：按一些字段的值进行分组操作</li>
+<li>汇总（summarise()）：将数据框折叠为单个行或聚合行–通常与group_by()一起使用，通常用于聚合
+%&gt;%：将前一个输出传递到下一个参数的第一个位置，可以理解为“然后你做…”</li>
+<li>计数（count）：&lt;group_by([var])&gt;的快捷方式–&gt;&lt;summarise(n = n())&gt;</li>
+<li>near：两个值是否基本相等（用于测试等价性并处理浮点数中的奇异性）</li>
+<li>is.na：如果是NA（和相关值），输出为TRUE，否则为FALSE</li>
+<li>between：between(Sepal.Length, 1, 3)相当于Sepal.Length &gt;=1 &amp; Sepal.Length &lt;=3</li>
+<li>转换（transmute）：mutate但仅保留输出的列</li>
+<li>提前（lead）、滞后（lag）：在提前或滞后位置获取值n位置</li>
+<li>对数（log、log2、log10）：以e、2、10为底的对数函数</li>
+<li>累积求和（cumsum）、累积乘积（cumprod）、累积最小值（cummin）、累积最大值（cummax）、累17. 积平均值（cummean）：常见的累积函数</li>
+<li>&lt;、&lt;=、&gt;、&gt;=、!=：逻辑运算符</li>
+<li>最小排名（min_rank）、行编号（row_number）、稠密排名（dense_rank）、百分位排名（percent_rank）、累计分布（cume_dist）、n分位数（ntile）：常见的排名函数</li>
+<li>位置：mean；median</li>
+<li>散布度量：标准偏差（sd）、四分位距（IQR()）、中位数绝对偏差（mad()）</li>
+</ol>
+</div>
+<div id="数据探索" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> 数据探索<a href="index.html#数据探索" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>cut_width: 指定每个切割的宽度（通常与 geom_boxplot 一起使用）。</li>
+<li>cut_number: 指定要创建的组数，允许可变的切割宽度（通常与 geom_boxplot 一起使用）。</li>
+<li>geom_histogram: 主要参数是 bins、binwidth。</li>
+<li>geom_freqpoly: 如果希望有重叠的直方图（输出线），可以使用此功能。
+可以将 y 设置为 ..density.. 来使每个图的比例尺相等（类似于 geom_density 的效果）。</li>
+<li>geom_boxplot: 使用 outlier.colour、outlier.fill 等参数来调整离群值。</li>
+<li>geom_violin: 为 x 的每个因子创建双面直方图。</li>
+<li>geom_bin2d: x 和 y 值的散点图，但使用着色来确定每个点的计数/密度。</li>
+<li>geom_hex: 与 geom_bin2d 类似，但是使用六边形形状进行着色。</li>
+<li>reorder: 参数1 = 要重新排序的变量，参数2 = 重新排序的依据变量，参数3 = 重新排序的函数（例如，中位数、均值、最大值等）。</li>
+<li>coord_cartesian: 调整 x、y 窗口而不过滤视图中排除的值。</li>
+<li>xlim；ylim：调整窗口并过滤出不在窗口内的值（与 scale_x(/y)_continuous 使用相同的方法）。</li>
+<li>ifelse: 矢量化的 if else 函数（不要与 if 和 else 函数混淆）。
+dplyr::if_else 是更严格的替代方法。</li>
+<li>case_when: 创建依赖于现有变量的复杂组合的新变量。</li>
+</ol>
+</div>
+<div id="数据整理" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> 数据整理<a href="index.html#数据整理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>spread: 逆标准化，例如 spread(iris, Species)。</li>
+<li>gather: 标准化，例如 gather(mpg, drv, class, key = “drive_or_class”, value = “value”)。</li>
+<li>separate: 将一个列分成多个列，例如 separate(table3, rate, into = c(“cases”, “population”), sep = “/”)。默认使用非字母数字字符作为分隔符，也可以使用数字按宽度分隔。</li>
+<li>extract：类似于 separate，但指定要提取的内容，而不是要拆分的内容。</li>
+<li>unite：separate 的逆操作。</li>
+</ol>
+</div>
+<div id="多数据集合并" class="section level3 hasAnchor" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> 多数据集合并<a href="index.html#多数据集合并" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>mutating joins：从另一个数据框中匹配的观察添加新变量到一个数据框中。inner_join：当相等时匹配。left_join：保留第一个参数中的所有观察。right_join：保留第二个参数中的所有观察。full_join：保留第一个和第二个参数中的所有观察。</li>
+<li>filtering joins：基于它们是否与另一个表中的观察匹配来过滤一个数据框中的观察。semi_join(x, y)：保留在 y 中有匹配的所有观察在 x 中的观察。anti_join(x, y)：删除在 y 中有匹配的 x 中的所有观察。</li>
+<li>Set operations：将观察看作集合元素进行处理。intersect(x, y)：仅返回同时在 x 和 y 中的观察（当输入是数据框时，是跨行比较所有值）。union(x, y)：返回 x 和 y 中唯一的观察。setdiff(x, y)：返回在 x 中但不在 y 中的观察。</li>
+</ol>
+</div>
+<div id="字符串" class="section level3 hasAnchor" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> 字符串<a href="index.html#字符串" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><code>writeLines</code>: 查看字符串的原始内容（在新行上打印向量中的每个字符串）。</li>
+<li><code>str_length</code>: 字符串中的字符数。</li>
+<li><code>str_c</code>: 结合两个或多个字符串。
+<ul>
+<li>使用 <code>collapse</code> 参数将字符串向量合并为单个字符串。</li>
+</ul></li>
+<li><code>str_replace_na</code>: 将 NA 打印为 “NA”。</li>
+<li><code>str_sub</code>: 使用 <code>start</code> 和 <code>end</code> 参数指定要删除（或替换）的位置，也可以使用负数表示从后面开始。</li>
+<li><code>str_to_lower</code>、<code>str_to_upper</code>、<code>str_to_upper</code>: 更改字符串大小写。
+<ul>
+<li><code>locale</code> 参数（处理字符中的轻微差异）。</li>
+</ul></li>
+<li><code>str_order</code>、<code>str_sort</code>: 更强大的 <code>order</code> 和 <code>sort</code> 版本，允许使用 <code>locale</code> 参数。</li>
+<li><code>str_view</code>、<code>str_view_all</code>: 显示字符和正则表达式匹配。</li>
+<li><code>\d</code>：匹配任何数字。</li>
+<li><code>\s</code>：匹配任何空白字符（例如空格、制表符、换行符）。</li>
+<li><code>[abc]</code>：匹配 a、b 或 c。</li>
+<li><code>[^abc]</code>：匹配除 a、b 或 c 之外的任何字符。</li>
+<li><code>{n}</code>：恰好 n 次。</li>
+<li><code>{n,}</code>：至少 n 次。</li>
+<li><code>{,m}</code>：最多 m 次。</li>
+<li><code>{n,m}</code>：介于 n 和 m 之间。</li>
+<li><code>str_detect</code>：返回逻辑向量的 TRUE/FALSE 值。</li>
+<li><code>str_subset</code>：从 <code>str_detect</code> 中选择 TRUE 值的子集。</li>
+<li><code>str_count</code>：字符串中的匹配次数。</li>
+<li><code>str_extract</code>：提取匹配项的实际文本。</li>
+<li><code>str_extract_all</code>：返回所有匹配项的列表。
+<ul>
+<li><code>simplify = TRUE</code> 返回一个矩阵。</li>
+</ul></li>
+<li><code>str_match</code>：类似于 <code>str_extract</code>，但以矩阵的形式给出每个匹配的各个组件，而不是字符向量（还有 <code>str_match_all</code>）。</li>
+<li><code>tidyr::extract</code>：类似于 <code>str_match</code>，但用匹配项的名称命名列，并将其移到新列中。</li>
+<li><code>str_replace</code>、<code>str_replace_all</code>：用新字符串替换匹配项。</li>
+<li><code>str_split</code>：将字符串拆分为片段 - 默认为单词（返回列表）。
+<ul>
+<li><code>simplify = TRUE</code> 再次返回一个矩阵。</li>
+</ul></li>
+<li><code>boundary</code> 用于指定拆分级别，例如 <code>str_view_all(x, boundary("word"))</code>。</li>
+<li><code>str_locate</code>、<code>str_locate_all</code>：给出每个匹配的起始和结束位置。</li>
+<li><code>regex</code> 在匹配中指定更多选项，例如 <code>str_view(bananas, regex("banana", ignore_case = TRUE))</code>。
+<ul>
+<li><code>multiline = TRUE</code> 允许 <code>^</code> 和 <code>$</code> 匹配每行的开头和结尾（而不仅是字符串的开头和结尾）。</li>
+<li><code>comments = TRUE</code> 允许您在复杂的正则表达式中添加注释。</li>
+<li><code>dotall = TRUE</code> 允许 <code>.</code> 匹配更多内容而不仅仅是字母，例如 <code>\n</code>。</li>
+</ul></li>
+<li><code>fixed</code>、<code>coll</code> 是与正则表达式相关的替代方案。</li>
+<li><code>apropos</code> 搜索全局环境中所有可用的对象（例如，如果你记不住函数名）。</li>
+<li><code>dir</code>：列出目录中的所有文件。
+<ul>
+<li><code>pattern</code> 参数采用正则表达式。</li>
+</ul></li>
+<li><code>stringi</code>：比 <code>stringr</code> 更全面的包（大约有 <code>stringr</code> 函数的 5 倍多）。</li>
+</ol>
+</div>
+<div id="因子" class="section level3 hasAnchor" number="1.3.7">
+<h3><span class="header-section-number">1.3.7</span> 因子<a href="index.html#因子" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><code>factor</code>: 基于提供的水平将变量转换为因子。</li>
+<li><code>fct_rev</code>: 颠倒因子的顺序。</li>
+<li><code>fct_infreq</code>: 根据递增频率对水平进行排序。</li>
+<li><code>fct_relevel</code>: 允许您将水平移动到顺序的前面。</li>
+<li><code>fct_inorder</code>: 根据数据中出现的顺序值对现有因子进行排序。</li>
+<li><code>fct_reorder</code>: 根据其他指定变量的值（默认为中位数）对输入因子进行排序，具有 3 个输入参数：<code>f</code>：要修改的因子，<code>x</code>：要根据其排序的输入变量，<code>fun</code>：要在 <code>x</code> 上使用的函数，还有 <code>desc</code> 选项。</li>
+<li><code>fct_reorder2</code>: 根据其他指定变量的最大值对输入因子进行排序（用于使图例对齐）。</li>
+<li><code>fct_recode</code>: 允许您更改每个水平的值。</li>
+<li><code>fct_collapse</code>: 是 <code>fct_recode</code> 的一种变体，允许您提供多个旧水平作为向量。</li>
+<li><code>fct_lump</code>: 允许您合并小组，使用 <code>n</code> 来指定要结束的组数。</li>
+</ol>
+</div>
+<div id="时间日期" class="section level3 hasAnchor" number="1.3.8">
+<h3><span class="header-section-number">1.3.8</span> 时间日期<a href="index.html#时间日期" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><code>today</code>: 获取当前日期。</li>
+<li><code>now</code>: 获取当前日期时间。</li>
+<li><code>ymd_hms</code>: 这是一组直接设置函数的示例，它们接受字符串或不带引号的数字，并输出日期或日期时间。</li>
+<li><code>make_datetime</code>: 从单独的组件创建日期时间，例如 <code>make_datetime(year, month, day, hour, minute)</code>。</li>
+<li><code>as_date_time</code> 和 <code>as_date</code>: 让您在日期时间和日期之间切换，例如 <code>as_datetime(today())</code> 或 <code>as_date(now())</code>。</li>
+<li>访问器函数：从现有日期时间中提取组件的函数：
+<ul>
+<li><code>year</code>, <code>month</code>, <code>mday</code>, <code>yday</code>, <code>wday</code>, <code>hour</code>, <code>minute</code>, <code>second</code>。</li>
+<li><code>month</code> 和 <code>wday</code> 可以使用 <code>label = TRUE</code> 提取缩写名称，使用 <code>abbr = FALSE</code> 提取完整名称。</li>
+<li>您还可以使用这些函数设置特定的组件，例如 <code>year(datetime) &lt;- 2020</code>。</li>
+</ul></li>
+<li><code>update</code>: 允许您一次指定多个值，例如 <code>update(datetime, year = 2020, month = 2, mday = 2, hour = 2)</code>。</li>
+<li>舍入函数到最近的时间单位：
+<ul>
+<li><code>floor_date</code>, <code>round_date</code>, <code>ceiling_date</code>。</li>
+</ul></li>
+<li><code>as.duration</code>: 将时间差转换为持续时间。</li>
+<li>持续时间（可以相加和相乘）：
+<ul>
+<li><code>dseconds</code>, <code>dhours</code>, <code>ddays</code>, <code>dweeks</code>, <code>dyears</code>。</li>
+</ul></li>
+<li>期间（可以相加和相乘），比持续时间更可能做您期望的事情：
+<ul>
+<li><code>seconds</code>, <code>minutes</code>, <code>hours</code>, <code>days</code>, <code>weeks</code>, <code>months</code>。</li>
+</ul></li>
+<li><code>Interval</code>: 具有起始点的持续时间，使其精确并且可以确定确切的长度，例如 <code>(today() %--% next_year) / ddays(1)</code> 可以找到确切的持续时间。</li>
+<li><code>Sys.timezone</code>: 查看 R 认为您当前所在的时区是什么。</li>
+<li><code>tz</code> 参数在 <code>ymd_hms</code> 中让您更改打印行为（不是底层值，因为默认为 UTC，除非更改）。</li>
+<li><code>with_tz</code>: 允许您将现有的日期时间对象打印到特定的其他时区。</li>
+<li><code>force_tz</code>: 当对象被错误标记了错误的时区并且需要修复时使用。</li>
+</ol>
+</div>
+<div id="图形细节调整" class="section level3 hasAnchor" number="1.3.9">
+<h3><span class="header-section-number">1.3.9</span> 图形细节调整<a href="index.html#图形细节调整" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>使用 <code>labs()</code> 添加标签，常见参数包括：<code>title</code>、<code>subtitle</code>、<code>caption</code>、<code>x</code>、<code>y</code>、<code>colour</code> 等。</li>
+<li>对于数学公式，使用 <code>quote</code>，参见 <code>?plotmath</code>。
+例如，在 <code>labs()</code> 中可以这样使用：<code>y = quote(alpha + beta + frac(delta, theta))</code>。</li>
+<li><code>geom_text()</code> 类似于 <code>geom_point()</code>，但是使用 <code>label</code> 参数添加文本。
+使用 <code>nudge_x</code> 和 <code>nudge_y</code> 调整位置。
+使用 <code>vjust</code>（‘top’、‘center’ 或 ‘bottom’）和 <code>hjust</code>（‘left’、‘center’ 或 ‘right’）控制文本的对齐。
+可以使用 <code>+Inf</code> 和 <code>-Inf</code> 将文本放置在确切的角落。
+使用 <code>stringr::str_wrap()</code> 自动添加换行符。</li>
+<li><code>geom_label()</code> 类似于 <code>geom_text()</code>，但是绘制一个框，使数据更容易查看（可以调整背景框的透明度和填充颜色）。</li>
+<li><code>ggrepel::geom_label_repel()</code> 类似于 <code>geom_label()</code>，但防止标签重叠。</li>
+<li>使用 <code>geom_hline()</code> 和 <code>geom_vline()</code> 添加参考线（通常使用 <code>size = 2</code> 和 <code>colour = white</code>）。</li>
+<li>使用 <code>geom_rect()</code> 绘制点周围的矩形（由 <code>xmin</code>、<code>xmax</code>、<code>ymin</code>、<code>ymax</code> 控制）。</li>
+<li>使用 <code>geom_segment()</code> 以箭头形式突出显示一个点（常见参数：<code>arrow</code>、<code>x</code>、<code>y</code>、<code>xend</code>、<code>yend</code>）。</li>
+<li>使用 <code>annotate</code> 手动添加标签（不来自数据框的值）。</li>
+<li>使用 <code>scale_x_continuous()</code>、<code>scale_y_continuous()</code>、<code>scale_colour_discrete()</code> 等函数调整比例尺。
+<code>breaks</code> 和 <code>labels</code> 是关键参数（可以设置 <code>labels = NULL</code> 删除值）。</li>
+<li>对于连续比例尺，尝试 <code>scale_colour_gradient()</code>、<code>scale_fill_gradient()</code>、<code>scale_colour_gradient2()</code>（两种颜色渐变，例如正负值）、<code>viridis::scale_colour_viridis()</code>。</li>
+<li>日期比例尺略有不同，例如 <code>scale_x_date()</code>，接受参数 <code>date_labels</code>（例如 <code>date_labels = "'%y"</code>）和 <code>date_breaks</code>（例如 <code>date_breaks = "2 days"</code>）。</li>
+<li>使用 <code>scale_x_log10()</code>、<code>scale_y_log10()</code> 等函数进行特定转换。</li>
+<li>使用 <code>theme()</code> 自定义图的非数据组件。
+例如，使用 <code>theme(legend.position = "none")</code> 可以移除图例。</li>
+<li>使用 <code>guides()</code> 控制单个图例的显示，与 <code>guide_legend()</code> 或 <code>guide_colourbar()</code> 结合使用。</li>
+<li>使用 <code>coord_cartesian()</code> 使用 <code>xlim</code> 和 <code>ylim</code> 参数进行缩放。</li>
+<li>可以自定义主题，例如 <code>theme_bw()</code>、<code>theme_classic()</code>，查看 <code>ggthemes</code> 中的其他主题。</li>
+<li>使用 <code>ggsave()</code> 默认保存最近的图。
+主要选项包括：<code>fig.width</code>、<code>fig.height</code>、<code>fig.asp</code>、<code>out.width</code>、<code>out.height</code>（详情见文档）。
+其他选项包括：<code>fig.align</code>、<code>fig.cap</code>、<code>dev</code>（例如 <code>dev = "png"</code>）。</li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="数据.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

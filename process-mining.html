@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Process mining | Driven by Data: The Power of Insights with R</title>
+  <meta name="description" content="Chapter 8 Process mining | Driven by Data: The Power of Insights with R" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Process mining | Driven by Data: The Power of Insights with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Process mining | Driven by Data: The Power of Insights with R" />
+  
+  
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="因果推断-1.html"/>
+<link rel="next" href="可解释机器学习.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Driven by Data: The Power of Insights with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#一个简单的例子"><i class="fa fa-check"></i><b>1.1</b> 一个简单的例子</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#数据分析的4原则"><i class="fa fa-check"></i><b>1.2</b> 数据分析的4原则:</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#sumamry"><i class="fa fa-check"></i><b>1.3</b> sumamry</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#数据可视化"><i class="fa fa-check"></i><b>1.3.1</b> 数据可视化</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#数据处理"><i class="fa fa-check"></i><b>1.3.2</b> 数据处理</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#数据探索"><i class="fa fa-check"></i><b>1.3.3</b> 数据探索</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#数据整理"><i class="fa fa-check"></i><b>1.3.4</b> 数据整理</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#多数据集合并"><i class="fa fa-check"></i><b>1.3.5</b> 多数据集合并</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#字符串"><i class="fa fa-check"></i><b>1.3.6</b> 字符串</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#因子"><i class="fa fa-check"></i><b>1.3.7</b> 因子</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#时间日期"><i class="fa fa-check"></i><b>1.3.8</b> 时间日期</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#图形细节调整"><i class="fa fa-check"></i><b>1.3.9</b> 图形细节调整</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数据.html"><a href="数据.html"><i class="fa fa-check"></i><b>2</b> 数据</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数据.html"><a href="数据.html#什么是数据"><i class="fa fa-check"></i><b>2.1</b> 什么是数据</a></li>
+<li class="chapter" data-level="2.2" data-path="数据.html"><a href="数据.html#不同种类数据"><i class="fa fa-check"></i><b>2.2</b> 不同种类数据</a></li>
+<li class="chapter" data-level="2.3" data-path="数据.html"><a href="数据.html#关于变量"><i class="fa fa-check"></i><b>2.3</b> 关于变量</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="数据转换.html"><a href="数据转换.html"><i class="fa fa-check"></i><b>3</b> 数据转换</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="数据转换.html"><a href="数据转换.html#data-transformation"><i class="fa fa-check"></i><b>3.1</b> Data transformation</a></li>
+<li class="chapter" data-level="3.2" data-path="数据转换.html"><a href="数据转换.html#什么是tidy整齐的数据"><i class="fa fa-check"></i><b>3.2</b> 什么是tidy(整齐)的数据</a></li>
+<li class="chapter" data-level="3.3" data-path="数据转换.html"><a href="数据转换.html#pivot_longer"><i class="fa fa-check"></i><b>3.3</b> pivot_longer</a></li>
+<li class="chapter" data-level="3.4" data-path="数据转换.html"><a href="数据转换.html#pivot_wider"><i class="fa fa-check"></i><b>3.4</b> pivot_wider</a></li>
+<li class="chapter" data-level="3.5" data-path="数据转换.html"><a href="数据转换.html#常用数据处理函数"><i class="fa fa-check"></i><b>3.5</b> 常用数据处理函数</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="数据转换.html"><a href="数据转换.html#rename"><i class="fa fa-check"></i><b>3.5.1</b> rename</a></li>
+<li class="chapter" data-level="3.5.2" data-path="数据转换.html"><a href="数据转换.html#select"><i class="fa fa-check"></i><b>3.5.2</b> select</a></li>
+<li class="chapter" data-level="3.5.3" data-path="数据转换.html"><a href="数据转换.html#mutate"><i class="fa fa-check"></i><b>3.5.3</b> mutate</a></li>
+<li class="chapter" data-level="3.5.4" data-path="数据转换.html"><a href="数据转换.html#filter"><i class="fa fa-check"></i><b>3.5.4</b> filter</a></li>
+<li class="chapter" data-level="3.5.5" data-path="数据转换.html"><a href="数据转换.html#arrange"><i class="fa fa-check"></i><b>3.5.5</b> arrange</a></li>
+<li class="chapter" data-level="3.5.6" data-path="数据转换.html"><a href="数据转换.html#group_by-and-summarize"><i class="fa fa-check"></i><b>3.5.6</b> group_by and summarize</a></li>
+<li class="chapter" data-level="3.5.7" data-path="数据转换.html"><a href="数据转换.html#slice_max-slice_min"><i class="fa fa-check"></i><b>3.5.7</b> slice_max (slice_min)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="数据转换.html"><a href="数据转换.html#join"><i class="fa fa-check"></i><b>3.5.8</b> join</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="数据转换.html"><a href="数据转换.html#data-cleaning"><i class="fa fa-check"></i><b>3.6</b> Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="数据转换.html"><a href="数据转换.html#splitting-text"><i class="fa fa-check"></i><b>3.6.1</b> Splitting Text</a></li>
+<li class="chapter" data-level="3.6.2" data-path="数据转换.html"><a href="数据转换.html#replace-values"><i class="fa fa-check"></i><b>3.6.2</b> Replace Values</a></li>
+<li class="chapter" data-level="3.6.3" data-path="数据转换.html"><a href="数据转换.html#drop-columns"><i class="fa fa-check"></i><b>3.6.3</b> Drop Columns</a></li>
+<li class="chapter" data-level="3.6.4" data-path="数据转换.html"><a href="数据转换.html#drop-rows"><i class="fa fa-check"></i><b>3.6.4</b> Drop Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html"><i class="fa fa-check"></i><b>4</b> 数据科学的其他话题</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#定义数据科学问题"><i class="fa fa-check"></i><b>4.1</b> 定义数据科学问题</a></li>
+<li class="chapter" data-level="4.2" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#建模与统计推断"><i class="fa fa-check"></i><b>4.2</b> 建模与统计推断</a></li>
+<li class="chapter" data-level="4.3" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#因果推断"><i class="fa fa-check"></i><b>4.3</b> 因果推断</a></li>
+<li class="chapter" data-level="4.4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#分析结果展示"><i class="fa fa-check"></i><b>4.4</b> 分析结果展示</a></li>
+<li class="chapter" data-level="4.5" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#数据科学演讲"><i class="fa fa-check"></i><b>4.5</b> 数据科学演讲</a></li>
+<li class="chapter" data-level="4.6" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#可重复性"><i class="fa fa-check"></i><b>4.6</b> 可重复性</a></li>
+<li class="chapter" data-level="4.7" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#总结"><i class="fa fa-check"></i><b>4.7</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarytools-概述.html"><a href="summarytools-概述.html"><i class="fa fa-check"></i><b>5</b> 1. summarytools 概述</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#频率表freq"><i class="fa fa-check"></i><b>5.1</b> 2. 频率表：freq()</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#同时生成多个频率表"><i class="fa fa-check"></i><b>5.1.1</b> 同时生成多个频率表</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#子集过滤频率表"><i class="fa fa-check"></i><b>5.1.2</b> 子集（过滤）频率表</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可折叠节"><i class="fa fa-check"></i><b>5.1.3</b> 可折叠节</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#交叉表ctable"><i class="fa fa-check"></i><b>5.2</b> 3. 交叉表：ctable()</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#行列或总体比例"><i class="fa fa-check"></i><b>5.2.1</b> 行、列或总体比例</a></li>
+<li class="chapter" data-level="5.2.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#最小交叉表"><i class="fa fa-check"></i><b>5.2.2</b> 最小交叉表</a></li>
+<li class="chapter" data-level="5.2.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#卡方检验𝛘²几率比和风险比"><i class="fa fa-check"></i><b>5.2.3</b> 卡方检验（𝛘²）、几率比和风险比</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#描述性统计-descr"><i class="fa fa-check"></i><b>5.3</b> 4. 描述性统计: descr()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#转置和选择统计信息"><i class="fa fa-check"></i><b>5.3.1</b> 转置和选择统计信息</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="summarytools-概述.html"><a href="summarytools-概述.html#数据框摘要-dfsummary"><i class="fa fa-check"></i><b>5.4</b> 5. 数据框摘要: dfSummary()</a></li>
+<li class="chapter" data-level="5.5" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可选统计信息"><i class="fa fa-check"></i><b>5.5</b> 可选统计信息</a></li>
+<li class="chapter" data-level="5.6" data-path="summarytools-概述.html"><a href="summarytools-概述.html#grouped-statistics"><i class="fa fa-check"></i><b>5.6</b> 6.Grouped Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="summarytools-概述.html"><a href="summarytools-概述.html#分组统计group_by"><i class="fa fa-check"></i><b>5.7</b> 7. 分组统计：group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-绘图.html"><a href="r-绘图.html"><i class="fa fa-check"></i><b>6</b> R 绘图</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-绘图.html"><a href="r-绘图.html#词云"><i class="fa fa-check"></i><b>6.1</b> 词云</a></li>
+<li class="chapter" data-level="6.2" data-path="r-绘图.html"><a href="r-绘图.html#使用-plotly-创建交互式图表"><i class="fa fa-check"></i><b>6.2</b> 使用 Plotly 创建交互式图表</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="r-绘图.html"><a href="r-绘图.html#ggplot-图和plotly-图转换"><i class="fa fa-check"></i><b>6.2.1</b> ggplot 图和plotly 图转换</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-绘图.html"><a href="r-绘图.html#ggfortify"><i class="fa fa-check"></i><b>6.3</b> ggfortify</a></li>
+<li class="chapter" data-level="6.4" data-path="r-绘图.html"><a href="r-绘图.html#corrplot"><i class="fa fa-check"></i><b>6.4</b> corrplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="因果推断-1.html"><a href="因果推断-1.html"><i class="fa fa-check"></i><b>7</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="因果推断-1.html"><a href="因果推断-1.html#因果推断的基本概念"><i class="fa fa-check"></i><b>7.1</b> 因果推断的基本概念</a></li>
+<li class="chapter" data-level="7.2" data-path="因果推断-1.html"><a href="因果推断-1.html#r中的因果推断工具"><i class="fa fa-check"></i><b>7.2</b> R中的因果推断工具</a></li>
+<li class="chapter" data-level="7.3" data-path="因果推断-1.html"><a href="因果推断-1.html#匹配方法"><i class="fa fa-check"></i><b>7.3</b> 匹配方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="因果推断-1.html"><a href="因果推断-1.html#倾向得分匹配"><i class="fa fa-check"></i><b>7.3.1</b> 倾向得分匹配</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="因果推断-1.html"><a href="因果推断-1.html#工具变量法"><i class="fa fa-check"></i><b>7.4</b> 工具变量法</a></li>
+<li class="chapter" data-level="7.5" data-path="因果推断-1.html"><a href="因果推断-1.html#参考"><i class="fa fa-check"></i><b>7.5</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="process-mining.html"><a href="process-mining.html"><i class="fa fa-check"></i><b>8</b> Process mining</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="process-mining.html"><a href="process-mining.html#流程挖掘的基本概念"><i class="fa fa-check"></i><b>8.1</b> 流程挖掘的基本概念</a></li>
+<li class="chapter" data-level="8.2" data-path="process-mining.html"><a href="process-mining.html#r语言中的流程挖掘工具"><i class="fa fa-check"></i><b>8.2</b> R语言中的流程挖掘工具</a></li>
+<li class="chapter" data-level="8.3" data-path="process-mining.html"><a href="process-mining.html#数据准备"><i class="fa fa-check"></i><b>8.3</b> 数据准备</a></li>
+<li class="chapter" data-level="8.4" data-path="process-mining.html"><a href="process-mining.html#控制流挖掘"><i class="fa fa-check"></i><b>8.4</b> 控制流挖掘</a></li>
+<li class="chapter" data-level="8.5" data-path="process-mining.html"><a href="process-mining.html#性能分析"><i class="fa fa-check"></i><b>8.5</b> 性能分析</a></li>
+<li class="chapter" data-level="8.6" data-path="process-mining.html"><a href="process-mining.html#社会网络分析"><i class="fa fa-check"></i><b>8.6</b> 社会网络分析</a></li>
+<li class="chapter" data-level="8.7" data-path="process-mining.html"><a href="process-mining.html#参考-1"><i class="fa fa-check"></i><b>8.7</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>9</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性-feature-importance"><i class="fa fa-check"></i><b>9.1</b> 特征重要性 (Feature Importance)</a></li>
+<li class="chapter" data-level="9.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#偏差分析-partial-dependence-plots-pdp"><i class="fa fa-check"></i><b>9.2</b> 偏差分析 (Partial Dependence Plots, PDP)</a></li>
+<li class="chapter" data-level="9.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部解释"><i class="fa fa-check"></i><b>9.3</b> 局部解释</a></li>
+<li class="chapter" data-level="9.4" data-path="可解释机器学习.html"><a href="可解释机器学习.html#参考-2"><i class="fa fa-check"></i><b>9.4</b> 参考</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">Driven by Data: The Power of Insights with R</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Driven by Data: The Power of Insights with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="process-mining" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Process mining<a href="process-mining.html#process-mining" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>流程挖掘是一种数据挖掘技术，旨在从事件日志中发现、监控和优化实际流程。它在各个领域中的应用日益增多，如制造业、医疗保健和金融服务等。通过流程挖掘，组织可以获得对其业务流程的深入洞察，从而提高效率、降低成本并改善客户体验。</p>
+<div id="流程挖掘的基本概念" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> 流程挖掘的基本概念<a href="process-mining.html#流程挖掘的基本概念" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>事件日志：事件日志是流程挖掘的基础数据，它记录了流程中发生的各个事件。每个事件至少包含三个属性：活动名称、时间戳和案例ID。例如，在订单处理流程中，事件日志可能包含如下条目：</p>
+<table>
+<thead>
+<tr class="header">
+<th>案例ID</th>
+<th>活动名称</th>
+<th>时间戳</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>接收订单</td>
+<td>2021-01-01 09:00</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>发货</td>
+<td>2021-01-01 10:00</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>接收订单</td>
+<td>2021-01-02 09:00</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>发货</td>
+<td>2021-01-02 10:30</td>
+</tr>
+</tbody>
+</table>
+<p>流程模型：流程模型是对实际流程的抽象表示，通常以图形形式展现，如BPMN图或Petri网。流程模型描述了流程中的活动、事件、网关（决策点）和序列流（活动间的顺序关系）。</p>
+<p>控制流：控制流是流程模型中的一个关键概念，它描述了流程中活动的执行顺序。控制流可以是顺序的、并行的、选择的或循环的。</p>
+</div>
+<div id="r语言中的流程挖掘工具" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> R语言中的流程挖掘工具<a href="process-mining.html#r语言中的流程挖掘工具" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R提供了多种包来支持流程挖掘的分析：</p>
+<p>bupaR：提供一套工具来处理、分析和可视化事件日志数据。
+edeaR：扩展了bupaR，提供了更多的事件日志探索功能。
+processmapR：用于生成流程图，帮助理解流程模型。</p>
+</div>
+<div id="数据准备" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> 数据准备<a href="process-mining.html#数据准备" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在R中进行流程挖掘之前，需要准备和预处理事件日志数据。这通常包括数据清洗、格式转换和时间序列处理等步骤。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="process-mining.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(bupaR)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;bupaR&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:utils&#39;:
+## 
+##     timestamp</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="process-mining.html#cb5-1" tabindex="-1"></a>event_log <span class="ot">&lt;-</span> eventdataR<span class="sc">::</span>patients</span></code></pre></div>
+<p>在上述代码中，我们使用eventdataR包中的patients数据集作为示例事件日志。</p>
+</div>
+<div id="控制流挖掘" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> 控制流挖掘<a href="process-mining.html#控制流挖掘" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>控制流挖掘是流程挖掘的核心部分，它旨在发现流程模型中的活动顺序和依赖关系。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="process-mining.html#cb6-1" tabindex="-1"></a><span class="fu">library</span>(processmapR)</span>
+<span id="cb6-2"><a href="process-mining.html#cb6-2" tabindex="-1"></a><span class="fu">process_map</span>(event_log)</span></code></pre></div>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-4fb06d5eb81e250ff0ce" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4fb06d5eb81e250ff0ce">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       rankdir = \"LR\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     weight = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"End\", shape = \"circle\", style = \"rounded,filled\", fontcolor = \"brown4\", color = \"brown4\", tooltip = \"ARTIFICIAL_END\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#FFFFFF\"] \n  \"2\" [label = \"Start\", shape = \"circle\", style = \"rounded,filled\", fontcolor = \"chartreuse4\", color = \"chartreuse4\", tooltip = \"ARTIFICIAL_START\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#FFFFFF\"] \n  \"3\" [label = \"Blood test\n237\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"black\", color = \"grey\", tooltip = \"Blood test\n237\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#ECE7F2\"] \n  \"4\" [label = \"Check-out\n492\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"Check-out\n492\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"5\" [label = \"Discuss Results\n495\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"Discuss Results\n495\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"6\" [label = \"MRI SCAN\n236\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"black\", color = \"grey\", tooltip = \"MRI SCAN\n236\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#ECE7F2\"] \n  \"7\" [label = \"Registration\n500\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"Registration\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"8\" [label = \"Triage and Assessment\n500\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"Triage and Assessment\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"9\" [label = \"X-Ray\n261\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"black\", color = \"grey\", tooltip = \"X-Ray\n261\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#ECE7F2\"] \n\"2\"->\"7\" [label = \"500\", penwidth = \"5\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"3\"->\"1\" [label = \"1\", penwidth = \"1.008\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"3\"->\"6\" [label = \"236\", penwidth = \"2.888\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"4\"->\"1\" [label = \"492\", penwidth = \"4.936\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"5\"->\"1\" [label = \"3\", penwidth = \"1.024\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"5\"->\"4\" [label = \"492\", penwidth = \"4.936\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"6\"->\"5\" [label = \"236\", penwidth = \"2.888\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"7\"->\"8\" [label = \"500\", penwidth = \"5\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"8\"->\"1\" [label = \"2\", penwidth = \"1.016\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"8\"->\"3\" [label = \"237\", penwidth = \"2.896\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"8\"->\"9\" [label = \"261\", penwidth = \"3.088\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"9\"->\"1\" [label = \"2\", penwidth = \"1.016\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"9\"->\"5\" [label = \"259\", penwidth = \"3.072\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>使用processmapR包的process_map函数，我们可以生成事件日志的流程图，直观地展示活动之间的流转关系。</p>
+</div>
+<div id="性能分析" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> 性能分析<a href="process-mining.html#性能分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>性能分析是流程挖掘的一个重要方面，它关注流程的效率和效果。在R中，我们可以使用bupaR包进行性能分析，包括分析处理时间、等待时间和资源利用率等指标。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="process-mining.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(bupaverse)</span></code></pre></div>
+<pre><code>## 
+## .______    __    __  .______      ___   ____    ____  _______ .______          _______. _______
+## |   _  \  |  |  |  | |   _  \    /   \  \   \  /   / |   ____||   _  \        /       ||   ____|
+## |  |_)  | |  |  |  | |  |_)  |  /  ^  \  \   \/   /  |  |__   |  |_)  |      |   (----`|  |__
+## |   _  &lt;  |  |  |  | |   ___/  /  /_\  \  \      /   |   __|  |      /        \   \    |   __|
+## |  |_)  | |  `--&#39;  | |  |     /  _____  \  \    /    |  |____ |  |\  \----.----)   |   |  |____
+## |______/   \______/  | _|    /__/     \__\  \__/     |_______|| _| `._____|_______/    |_______|
+##                                                                                                 
+## ── Attaching packages ─────────────────────────────────────── bupaverse 0.1.0 ──
+## ✔ processcheckR 0.1.4     
+## ── Conflicts ────────────────────────────────────────── bupaverse_conflicts() ──
+## ✖ bupaR::filter()          masks stats::filter()
+## ✖ processmapR::frequency() masks stats::frequency()
+## ✖ edeaR::setdiff()         masks base::setdiff()
+## ✖ bupaR::timestamp()       masks utils::timestamp()
+## ✖ processcheckR::xor()     masks base::xor()</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="process-mining.html#cb9-1" tabindex="-1"></a><span class="co"># 计算每个活动的平均持续时间</span></span>
+<span id="cb9-2"><a href="process-mining.html#cb9-2" tabindex="-1"></a>duration <span class="ot">&lt;-</span> event_log <span class="sc">%&gt;%</span> <span class="fu">throughput_time</span>(<span class="at">level =</span> <span class="st">&#39;case&#39;</span>)</span>
+<span id="cb9-3"><a href="process-mining.html#cb9-3" tabindex="-1"></a>duration</span></code></pre></div>
+<pre><code>##     patient throughput_time
+## 1       464  23.106759 days
+## 2       466  19.126030 days
+## 3       370  19.040937 days
+## 4       140  18.923981 days
+## 5       242  18.832905 days
+## 6        93  16.807581 days
+## 7        33  15.604722 days
+## 8       383  15.402130 days
+## 9       467  14.974236 days
+## 10      145  14.284826 days
+## 11      468  14.142257 days
+## 12      374  14.037928 days
+## 13      316  13.903935 days
+## 14       35  13.829861 days
+## 15       98  13.753368 days
+## 16       71  13.682847 days
+## 17       23  13.536829 days
+## 18      276  13.412361 days
+## 19       26  13.155648 days
+## 20       40  12.935880 days
+## 21      227  12.886991 days
+## 22       74  12.739109 days
+## 23      454  12.652072 days
+## 24      453  12.650324 days
+## 25      476  12.575370 days
+## 26       54  12.502187 days
+## 27       44  12.473819 days
+## 28      448  12.457130 days
+## 29      420  12.350451 days
+## 30      260  12.317604 days
+## 31       30  12.177824 days
+## 32      478  12.140775 days
+## 33      245  11.765035 days
+## 34      421  11.745891 days
+## 35      386  11.581053 days
+## 36      390  11.544792 days
+## 37      277  11.489734 days
+## 38      389  11.471667 days
+## 39      148  11.397245 days
+## 40      308  11.394074 days
+## 41      147  11.341586 days
+## 42       76  11.179340 days
+## 43       75  11.140463 days
+## 44       42  10.947176 days
+## 45       56  10.841748 days
+## 46      431  10.823414 days
+## 47      100  10.724722 days
+## 48       99  10.702813 days
+## 49      279  10.700127 days
+## 50      248  10.694213 days
+## 51      280  10.667778 days
+## 52      247  10.645903 days
+## 53      127  10.623530 days
+## 54      423  10.615729 days
+## 55      360  10.614433 days
+## 56       65  10.557315 days
+## 57       66  10.526516 days
+## 58      298  10.485046 days
+## 59      297  10.443750 days
+## 60      479  10.330046 days
+## 61      106  10.316319 days
+## 62      480  10.315764 days
+## 63      323  10.290231 days
+## 64      324  10.251481 days
+## 65      160  10.240208 days
+## 66      291  10.221366 days
+## 67       53  10.193750 days
+## 68      375  10.187731 days
+## 69       82  10.068009 days
+## 70      449  10.036319 days
+## 71      133  10.024630 days
+## 72      241  10.001192 days
+## 73      444   9.979595 days
+## 74      162   9.933356 days
+## 75       19   9.826782 days
+## 76      382   9.805810 days
+## 77      381   9.793380 days
+## 78       39   9.773993 days
+## 79      157   9.690104 days
+## 80      158   9.665197 days
+## 81      149   9.655787 days
+## 82      318   9.615208 days
+## 83      409   9.597650 days
+## 84      410   9.575590 days
+## 85       45   9.573194 days
+## 86       67   9.545868 days
+## 87      131   9.544664 days
+## 88       68   9.530012 days
+## 89       28   9.485833 days
+## 90       27   9.481979 days
+## 91      191   9.440150 days
+## 92      159   9.421829 days
+## 93      376   9.414549 days
+## 94      123   9.403970 days
+## 95      268   9.359340 days
+## 96      214   9.348692 days
+## 97       29   9.340023 days
+## 98      213   9.325532 days
+## 99      229   9.213796 days
+## 100      13   9.182639 days
+## 101      14   9.149525 days
+## 102     150   9.121944 days
+## 103     445   9.059688 days
+## 104     398   9.046088 days
+## 105     180   8.992037 days
+## 106     130   8.964120 days
+## 107     264   8.950197 days
+## 108     231   8.945764 days
+## 109     208   8.940938 days
+## 110     176   8.938924 days
+## 111     412   8.919225 days
+## 112     411   8.903183 days
+## 113     201   8.887882 days
+## 114     232   8.878414 days
+## 115     185   8.865718 days
+## 116     186   8.852500 days
+## 117     424   8.851042 days
+## 118     202   8.850104 days
+## 119      16   8.801204 days
+## 120     347   8.732569 days
+## 121     252   8.728877 days
+## 122     309   8.728438 days
+## 123     255   8.611493 days
+## 124     482   8.604537 days
+## 125     481   8.595521 days
+## 126     349   8.583750 days
+## 127     384   8.576192 days
+## 128     387   8.561505 days
+## 129     205   8.553750 days
+## 130     388   8.544387 days
+## 131     340   8.524016 days
+## 132     206   8.504850 days
+## 133      55   8.469572 days
+## 134     293   8.469201 days
+## 135     311   8.419838 days
+## 136     397   8.409977 days
+## 137     336   8.373866 days
+## 138     196   8.373218 days
+## 139     438   8.357963 days
+## 140     304   8.340046 days
+## 141     362   8.337326 days
+## 142     281   8.335706 days
+## 143     282   8.316829 days
+## 144     414   8.233472 days
+## 145     189   8.202014 days
+## 146     190   8.180938 days
+## 147     218   8.169329 days
+## 148     413   8.166516 days
+## 149     337   8.162616 days
+## 150     217   8.120706 days
+## 151     270   8.098877 days
+## 152     250   8.089410 days
+## 153     249   8.063507 days
+## 154     351   8.044074 days
+## 155      15   8.039491 days
+## 156     352   8.027812 days
+## 157     125   8.020544 days
+## 158     142   7.965671 days
+## 159      22   7.855475 days
+## 160     215   7.839479 days
+## 161     216   7.834931 days
+## 162     312   7.827940 days
+## 163     182   7.810556 days
+## 164     487   7.806169 days
+## 165      41   7.784109 days
+## 166     447   7.779120 days
+## 167      60   7.767106 days
+## 168     283   7.746551 days
+## 169     470   7.679491 days
+## 170     225   7.664352 days
+## 171     393   7.660521 days
+## 172     394   7.655255 days
+## 173     452   7.652604 days
+## 174     226   7.650544 days
+## 175     136   7.646042 days
+## 176     193   7.637037 days
+## 177     234   7.636759 days
+## 178     451   7.618299 days
+## 179     471   7.605127 days
+## 180     233   7.584444 days
+## 181     251   7.573773 days
+## 182     306   7.562546 days
+## 183     204   7.557546 days
+## 184     369   7.551215 days
+## 185     203   7.531632 days
+## 186       3   7.396250 days
+## 187       1   7.336019 days
+## 188       2   7.314618 days
+## 189     356   7.307894 days
+## 190     284   7.296725 days
+## 191     167   7.277616 days
+## 192     207   7.268681 days
+## 193     198   7.229699 days
+## 194      77   7.213206 days
+## 195      78   7.203229 days
+## 196     321   7.129178 days
+## 197     166   7.125822 days
+## 198     489   7.124537 days
+## 199     322   7.100475 days
+## 200     358   7.007500 days
+## 201     174   6.969514 days
+## 202     128   6.941308 days
+## 203     173   6.940752 days
+## 204     339   6.927384 days
+## 205     254   6.898981 days
+## 206     485   6.897593 days
+## 207     486   6.892176 days
+## 208     396   6.876782 days
+## 209     112   6.872720 days
+## 210     395   6.855949 days
+## 211     101   6.844734 days
+## 212     115   6.833403 days
+## 213       6   6.805405 days
+## 214     469   6.785475 days
+## 215     314   6.712755 days
+## 216     329   6.672442 days
+## 217     319   6.669271 days
+## 218     330   6.666424 days
+## 219     320   6.662616 days
+## 220     307   6.600394 days
+## 221     187   6.588808 days
+## 222     188   6.527431 days
+## 223      94   6.524456 days
+## 224     416   6.520752 days
+## 225     392   6.484282 days
+## 226     434   6.477847 days
+## 227     178   6.477523 days
+## 228     439   6.445914 days
+## 229     461   6.443958 days
+## 230     132   6.437778 days
+## 231     391   6.436655 days
+## 232     143   6.430683 days
+## 233     462   6.430081 days
+## 234     440   6.427396 days
+## 235      87   6.424757 days
+## 236     144   6.410417 days
+## 237     315   6.397743 days
+## 238     331   6.383403 days
+## 239     195   6.380752 days
+## 240     295   6.319051 days
+## 241      17   6.317812 days
+## 242     289   6.311806 days
+## 243     296   6.289780 days
+## 244     290   6.280741 days
+## 245       7   6.280081 days
+## 246     110   6.227523 days
+## 247     102   6.174375 days
+## 248     334   6.168576 days
+## 249     313   6.133889 days
+## 250     175   6.093218 days
+## 251     113   6.077801 days
+## 252      50   6.027396 days
+## 253     267   6.013623 days
+## 254      61   5.982049 days
+## 255     463   5.966678 days
+## 256     105   5.951343 days
+## 257     183   5.927697 days
+## 258     343   5.899340 days
+## 259     184   5.883634 days
+## 260     363   5.835509 days
+## 261     364   5.817130 days
+## 262     426   5.794815 days
+## 263      47   5.786898 days
+## 264      48   5.751551 days
+## 265     258   5.741019 days
+## 266      36   5.722569 days
+## 267     253   5.719537 days
+## 268       4   5.716944 days
+## 269     119   5.673576 days
+## 270     442   5.653310 days
+## 271     135   5.643669 days
+## 272     122   5.643113 days
+## 273     435   5.624062 days
+## 274     436   5.578947 days
+## 275     441   5.577280 days
+## 276      31   5.570139 days
+## 277      18   5.556863 days
+## 278      32   5.540694 days
+## 279     303   5.531701 days
+## 280     269   5.487500 days
+## 281     402   5.485683 days
+## 282     472   5.477211 days
+## 283      43   5.475671 days
+## 284       8   5.403889 days
+## 285      95   5.391609 days
+## 286     209   5.387720 days
+## 287      96   5.368183 days
+## 288     151   5.364919 days
+## 289     377   5.351134 days
+## 290     222   5.341505 days
+## 291     450   5.338218 days
+## 292     273   5.337361 days
+## 293     399   5.332813 days
+## 294     400   5.326412 days
+## 295      59   5.313391 days
+## 296     197   5.311076 days
+## 297     221   5.297361 days
+## 298      63   5.290660 days
+## 299     117   5.268657 days
+## 300     292   5.245880 days
+## 301      64   5.233206 days
+## 302      46   5.224421 days
+## 303     129   5.223669 days
+## 304      86   5.181991 days
+## 305     228   5.169352 days
+## 306     342   5.165394 days
+## 307     192   5.130683 days
+## 308       5   5.103692 days
+## 309     168   5.102002 days
+## 310     495   5.091424 days
+## 311     256   5.056111 days
+## 312     275   5.036829 days
+## 313     163   5.035023 days
+## 314     491   5.020602 days
+## 315     164   5.011539 days
+## 316     344   5.006308 days
+## 317     271   4.999850 days
+## 318     272   4.993981 days
+## 319     111   4.964306 days
+## 320     366   4.961111 days
+## 321     365   4.955868 days
+## 322      81   4.949317 days
+## 323     492   4.929942 days
+## 324     152   4.910752 days
+## 325     437   4.891343 days
+## 326      92   4.870775 days
+## 327      91   4.847338 days
+## 328     134   4.831227 days
+## 329     169   4.829352 days
+## 330     328   4.751215 days
+## 331     220   4.750683 days
+## 332     401   4.749317 days
+## 333     219   4.744329 days
+## 334     327   4.742303 days
+## 335      57   4.737546 days
+## 336     305   4.727928 days
+## 337     385   4.711192 days
+## 338      58   4.706678 days
+## 339     236   4.705208 days
+## 340     235   4.676458 days
+## 341     378   4.672627 days
+## 342      34   4.667674 days
+## 343     425   4.665648 days
+## 344     498   4.661331 days
+## 345     430   4.647361 days
+## 346     429   4.630220 days
+## 347     427   4.619676 days
+## 348     428   4.607303 days
+## 349     415   4.593067 days
+## 350     335   4.575961 days
+## 351     274   4.564132 days
+## 352      88   4.556609 days
+## 353      52   4.549826 days
+## 354      51   4.539421 days
+## 355     262   4.509433 days
+## 356     354   4.508692 days
+## 357     497   4.505509 days
+## 358     179   4.503484 days
+## 359     172   4.499595 days
+## 360     353   4.492731 days
+## 361     171   4.475937 days
+## 362     161   4.472847 days
+## 363     341   4.440880 days
+## 364     417   4.439965 days
+## 365       9   4.430278 days
+## 366     137   4.423576 days
+## 367     139   4.421759 days
+## 368      20   4.418935 days
+## 369      10   4.404919 days
+## 370     473   4.361829 days
+## 371     107   4.342836 days
+## 372     120   4.337060 days
+## 373     138   4.335938 days
+## 374     338   4.329132 days
+## 375     259   4.314907 days
+## 376     459   4.310972 days
+## 377     300   4.299259 days
+## 378     299   4.293785 days
+## 379     332   4.285266 days
+## 380     460   4.279583 days
+## 381     108   4.274514 days
+## 382     121   4.252361 days
+## 383     141   4.229456 days
+## 384      38   4.209306 days
+## 385     244   4.202905 days
+## 386     114   4.200752 days
+## 387     200   4.199271 days
+## 388     359   4.190035 days
+## 389     243   4.176933 days
+## 390      37   4.173229 days
+## 391      97   4.164942 days
+## 392     199   4.162014 days
+## 393     146   4.136759 days
+## 394     496   4.119919 days
+## 395     116   4.118796 days
+## 396     333   4.108623 days
+## 397     404   4.086458 days
+## 398      69   4.071481 days
+## 399      70   4.054606 days
+## 400     310   3.995035 days
+## 401     154   3.977789 days
+## 402     285   3.937928 days
+## 403     493   3.886481 days
+## 404     494   3.881933 days
+## 405     488   3.877396 days
+## 406     475   3.858900 days
+## 407     124   3.832928 days
+## 408     237   3.798067 days
+## 409     238   3.745949 days
+## 410     239   3.732500 days
+## 411     210   3.689387 days
+## 412     240   3.686678 days
+## 413     346   3.663333 days
+## 414     212   3.652662 days
+## 415     345   3.649873 days
+## 416     211   3.644583 days
+## 417      62   3.638611 days
+## 418     177   3.595602 days
+## 419     455   3.572292 days
+## 420     405   3.554375 days
+## 421     294   3.537060 days
+## 422      90   3.530521 days
+## 423     456   3.526852 days
+## 424     403   3.526319 days
+## 425      89   3.514109 days
+## 426     286   3.504861 days
+## 427     408   3.491331 days
+## 428     263   3.475880 days
+## 429     443   3.475174 days
+## 430     484   3.472894 days
+## 431     407   3.466273 days
+## 432     153   3.435359 days
+## 433     483   3.429977 days
+## 434     194   3.402986 days
+## 435     355   3.396053 days
+## 436     477   3.391875 days
+## 437     372   3.385822 days
+## 438     500   3.380648 days
+## 439      49   3.354757 days
+## 440     432   3.332245 days
+## 441     371   3.291134 days
+## 442     181   3.260775 days
+## 443     103   3.260347 days
+## 444     104   3.239803 days
+## 445     368   3.200613 days
+## 446     367   3.151678 days
+## 447     357   3.145856 days
+## 448     278   3.138877 days
+## 449     433   3.117269 days
+## 450     302   3.098958 days
+## 451     490   3.092639 days
+## 452     499   3.073299 days
+## 453      24   3.044051 days
+## 454      80   3.028148 days
+## 455     301   3.028137 days
+## 456      79   2.977153 days
+## 457     406   2.976285 days
+## 458     348   2.933785 days
+## 459     246   2.876574 days
+## 460     350   2.772350 days
+## 461      12   2.756910 days
+## 462     379   2.755995 days
+## 463     380   2.731192 days
+## 464      72   2.716574 days
+## 465     419   2.689282 days
+## 466      25   2.664109 days
+## 467     326   2.642720 days
+## 468     224   2.624074 days
+## 469     287   2.621852 days
+## 470      83   2.619745 days
+## 471     288   2.617326 days
+## 472     170   2.601505 days
+## 473     223   2.586632 days
+## 474     325   2.586134 days
+## 475      84   2.581400 days
+## 476     446   2.565336 days
+## 477     373   2.560266 days
+## 478      21   2.515880 days
+## 479     126   2.505324 days
+## 480     118   2.504190 days
+## 481     165   2.492153 days
+## 482     265   2.477627 days
+## 483     266   2.466655 days
+## 484     418   2.462720 days
+## 485     155   2.303333 days
+## 486     156   2.298634 days
+## 487     457   2.251887 days
+## 488     257   2.189769 days
+## 489     317   2.184537 days
+## 490     458   2.181192 days
+## 491     474   2.128495 days
+## 492     261   2.086829 days
+## 493     422   2.009051 days
+## 494     109   1.990556 days
+## 495     465   1.978067 days
+## 496      85   1.912546 days
+## 497     361   1.893808 days
+## 498      11   1.837708 days
+## 499      73   1.730428 days
+## 500     230   1.496088 days</code></pre>
+<p>在上述代码中，我们计算了事件日志中每个case的平均持续时间。</p>
+</div>
+<div id="社会网络分析" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> 社会网络分析<a href="process-mining.html#社会网络分析" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>社会网络分析是流程挖掘的另一个重要方面，它关注流程中参与者之间的关系和协作模式。在R中，我们可以使用bupaR和eventdataR包来进行社会网络分析。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="process-mining.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(eventdataR)</span>
+<span id="cb11-2"><a href="process-mining.html#cb11-2" tabindex="-1"></a><span class="fu">library</span>(bupaR)</span>
+<span id="cb11-3"><a href="process-mining.html#cb11-3" tabindex="-1"></a><span class="co"># 创建资源之间的协作网络</span></span>
+<span id="cb11-4"><a href="process-mining.html#cb11-4" tabindex="-1"></a>collaboration_network <span class="ot">&lt;-</span> patients <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="process-mining.html#cb11-5" tabindex="-1"></a>  <span class="fu">resource_map</span>()</span>
+<span id="cb11-6"><a href="process-mining.html#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="process-mining.html#cb11-7" tabindex="-1"></a>collaboration_network</span></code></pre></div>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-4859866e79c8ce0b2a9e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-4859866e79c8ce0b2a9e">{"x":{"diagram":"digraph {\n\ngraph [layout = \"dot\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\",\n       rankdir = \"LR\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     weight = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"End\", shape = \"circle\", style = \"rounded,filled\", fontcolor = \"brown4\", color = \"brown4\", tooltip = \"ARTIFICIAL_END\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#FFFFFF\"] \n  \"2\" [label = \"Start\", shape = \"circle\", style = \"rounded,filled\", fontcolor = \"chartreuse4\", color = \"chartreuse4\", tooltip = \"ARTIFICIAL_START\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#FFFFFF\"] \n  \"3\" [label = \"r1\n500\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"r1\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"4\" [label = \"r2\n500\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"r2\n500\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"5\" [label = \"r3\n237\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"black\", color = \"grey\", tooltip = \"r3\n237\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#ECE7F2\"] \n  \"6\" [label = \"r4\n236\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"black\", color = \"grey\", tooltip = \"r4\n236\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#ECE7F2\"] \n  \"7\" [label = \"r5\n261\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"black\", color = \"grey\", tooltip = \"r5\n261\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#ECE7F2\"] \n  \"8\" [label = \"r6\n495\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"r6\n495\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n  \"9\" [label = \"r7\n492\", shape = \"rectangle\", style = \"rounded,filled\", fontcolor = \"white\", color = \"grey\", tooltip = \"r7\n492\", penwidth = \"1.5\", fixedsize = \"FALSE\", fontname = \"Arial\", fontsize = \"10\", fillcolor = \"#0570B0\"] \n\"2\"->\"3\" [label = \"500\", penwidth = \"5\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"3\"->\"4\" [label = \"500\", penwidth = \"5\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"4\"->\"1\" [label = \"2\", penwidth = \"1.016\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"4\"->\"5\" [label = \"237\", penwidth = \"2.896\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"4\"->\"7\" [label = \"261\", penwidth = \"3.088\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"5\"->\"1\" [label = \"1\", penwidth = \"1.008\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"5\"->\"6\" [label = \"236\", penwidth = \"2.888\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"6\"->\"8\" [label = \"236\", penwidth = \"2.888\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"7\"->\"1\" [label = \"2\", penwidth = \"1.016\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"7\"->\"8\" [label = \"259\", penwidth = \"3.072\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"8\"->\"1\" [label = \"3\", penwidth = \"1.024\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"8\"->\"9\" [label = \"492\", penwidth = \"4.936\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n\"9\"->\"1\" [label = \"492\", penwidth = \"4.936\", color = \"dodgerblue4\", fontname = \"Arial\", fontsize = \"10\", weight = \"1\", constraint = \"TRUE\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p>在上述代码中，我们使用social_network函数创建了资源之间的协作网络，并使用plot函数进行可视化。</p>
+</div>
+<div id="参考-1" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> 参考<a href="process-mining.html#参考-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><a href="https://rpubs.com/liam/Bupartutorial" class="uri">https://rpubs.com/liam/Bupartutorial</a></li>
+<li><a href="https://rpubs.com/liam/bupaRExtensions" class="uri">https://rpubs.com/liam/bupaRExtensions</a></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="因果推断-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="可解释机器学习.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

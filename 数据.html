@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 数据 | Driven by Data: The Power of Insights with R</title>
+  <meta name="description" content="Chapter 2 数据 | Driven by Data: The Power of Insights with R" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 数据 | Driven by Data: The Power of Insights with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 数据 | Driven by Data: The Power of Insights with R" />
+  
+  
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="数据转换.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Driven by Data: The Power of Insights with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#一个简单的例子"><i class="fa fa-check"></i><b>1.1</b> 一个简单的例子</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#数据分析的4原则"><i class="fa fa-check"></i><b>1.2</b> 数据分析的4原则:</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#sumamry"><i class="fa fa-check"></i><b>1.3</b> sumamry</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#数据可视化"><i class="fa fa-check"></i><b>1.3.1</b> 数据可视化</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#数据处理"><i class="fa fa-check"></i><b>1.3.2</b> 数据处理</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#数据探索"><i class="fa fa-check"></i><b>1.3.3</b> 数据探索</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#数据整理"><i class="fa fa-check"></i><b>1.3.4</b> 数据整理</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#多数据集合并"><i class="fa fa-check"></i><b>1.3.5</b> 多数据集合并</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#字符串"><i class="fa fa-check"></i><b>1.3.6</b> 字符串</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#因子"><i class="fa fa-check"></i><b>1.3.7</b> 因子</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#时间日期"><i class="fa fa-check"></i><b>1.3.8</b> 时间日期</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#图形细节调整"><i class="fa fa-check"></i><b>1.3.9</b> 图形细节调整</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数据.html"><a href="数据.html"><i class="fa fa-check"></i><b>2</b> 数据</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数据.html"><a href="数据.html#不同种类数据"><i class="fa fa-check"></i><b>2.1</b> 不同种类数据</a></li>
+<li class="chapter" data-level="2.2" data-path="数据.html"><a href="数据.html#关于变量"><i class="fa fa-check"></i><b>2.2</b> 关于变量</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="数据转换.html"><a href="数据转换.html"><i class="fa fa-check"></i><b>3</b> 数据转换</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="数据转换.html"><a href="数据转换.html#data-transformation"><i class="fa fa-check"></i><b>3.1</b> Data transformation</a></li>
+<li class="chapter" data-level="3.2" data-path="数据转换.html"><a href="数据转换.html#什么是tidy整齐的数据"><i class="fa fa-check"></i><b>3.2</b> 什么是tidy(整齐)的数据</a></li>
+<li class="chapter" data-level="3.3" data-path="数据转换.html"><a href="数据转换.html#pivot_longer"><i class="fa fa-check"></i><b>3.3</b> pivot_longer</a></li>
+<li class="chapter" data-level="3.4" data-path="数据转换.html"><a href="数据转换.html#pivot_wider"><i class="fa fa-check"></i><b>3.4</b> pivot_wider</a></li>
+<li class="chapter" data-level="3.5" data-path="数据转换.html"><a href="数据转换.html#常用数据处理函数"><i class="fa fa-check"></i><b>3.5</b> 常用数据处理函数</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="数据转换.html"><a href="数据转换.html#rename"><i class="fa fa-check"></i><b>3.5.1</b> rename</a></li>
+<li class="chapter" data-level="3.5.2" data-path="数据转换.html"><a href="数据转换.html#select"><i class="fa fa-check"></i><b>3.5.2</b> select</a></li>
+<li class="chapter" data-level="3.5.3" data-path="数据转换.html"><a href="数据转换.html#mutate"><i class="fa fa-check"></i><b>3.5.3</b> mutate</a></li>
+<li class="chapter" data-level="3.5.4" data-path="数据转换.html"><a href="数据转换.html#filter"><i class="fa fa-check"></i><b>3.5.4</b> filter</a></li>
+<li class="chapter" data-level="3.5.5" data-path="数据转换.html"><a href="数据转换.html#arrange"><i class="fa fa-check"></i><b>3.5.5</b> arrange</a></li>
+<li class="chapter" data-level="3.5.6" data-path="数据转换.html"><a href="数据转换.html#group_by-and-summarize"><i class="fa fa-check"></i><b>3.5.6</b> group_by and summarize</a></li>
+<li class="chapter" data-level="3.5.7" data-path="数据转换.html"><a href="数据转换.html#slice_max-slice_min"><i class="fa fa-check"></i><b>3.5.7</b> slice_max (slice_min)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="数据转换.html"><a href="数据转换.html#join"><i class="fa fa-check"></i><b>3.5.8</b> join</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="数据转换.html"><a href="数据转换.html#data-cleaning"><i class="fa fa-check"></i><b>3.6</b> Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="数据转换.html"><a href="数据转换.html#splitting-text"><i class="fa fa-check"></i><b>3.6.1</b> Splitting Text</a></li>
+<li class="chapter" data-level="3.6.2" data-path="数据转换.html"><a href="数据转换.html#replace-values"><i class="fa fa-check"></i><b>3.6.2</b> Replace Values</a></li>
+<li class="chapter" data-level="3.6.3" data-path="数据转换.html"><a href="数据转换.html#drop-columns"><i class="fa fa-check"></i><b>3.6.3</b> Drop Columns</a></li>
+<li class="chapter" data-level="3.6.4" data-path="数据转换.html"><a href="数据转换.html#drop-rows"><i class="fa fa-check"></i><b>3.6.4</b> Drop Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html"><i class="fa fa-check"></i><b>4</b> 数据科学的其他话题</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#定义数据科学问题"><i class="fa fa-check"></i><b>4.1</b> 定义数据科学问题</a></li>
+<li class="chapter" data-level="4.2" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#建模与统计推断"><i class="fa fa-check"></i><b>4.2</b> 建模与统计推断</a></li>
+<li class="chapter" data-level="4.3" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#因果推断"><i class="fa fa-check"></i><b>4.3</b> 因果推断</a></li>
+<li class="chapter" data-level="4.4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#分析结果展示"><i class="fa fa-check"></i><b>4.4</b> 分析结果展示</a></li>
+<li class="chapter" data-level="4.5" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#数据科学演讲"><i class="fa fa-check"></i><b>4.5</b> 数据科学演讲</a></li>
+<li class="chapter" data-level="4.6" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#可重复性"><i class="fa fa-check"></i><b>4.6</b> 可重复性</a></li>
+<li class="chapter" data-level="4.7" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#总结"><i class="fa fa-check"></i><b>4.7</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarytools-概述.html"><a href="summarytools-概述.html"><i class="fa fa-check"></i><b>5</b> 1. summarytools 概述</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#频率表freq"><i class="fa fa-check"></i><b>5.1</b> 2. 频率表：freq()</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#同时生成多个频率表"><i class="fa fa-check"></i><b>5.1.1</b> 同时生成多个频率表</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#子集过滤频率表"><i class="fa fa-check"></i><b>5.1.2</b> 子集（过滤）频率表</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可折叠节"><i class="fa fa-check"></i><b>5.1.3</b> 可折叠节</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#交叉表ctable"><i class="fa fa-check"></i><b>5.2</b> 3. 交叉表：ctable()</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#行列或总体比例"><i class="fa fa-check"></i><b>5.2.1</b> 行、列或总体比例</a></li>
+<li class="chapter" data-level="5.2.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#最小交叉表"><i class="fa fa-check"></i><b>5.2.2</b> 最小交叉表</a></li>
+<li class="chapter" data-level="5.2.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#卡方检验𝛘²几率比和风险比"><i class="fa fa-check"></i><b>5.2.3</b> 卡方检验（𝛘²）、几率比和风险比</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#描述性统计-descr"><i class="fa fa-check"></i><b>5.3</b> 4. 描述性统计: descr()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#转置和选择统计信息"><i class="fa fa-check"></i><b>5.3.1</b> 转置和选择统计信息</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="summarytools-概述.html"><a href="summarytools-概述.html#数据框摘要-dfsummary"><i class="fa fa-check"></i><b>5.4</b> 5. 数据框摘要: dfSummary()</a></li>
+<li class="chapter" data-level="5.5" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可选统计信息"><i class="fa fa-check"></i><b>5.5</b> 可选统计信息</a></li>
+<li class="chapter" data-level="5.6" data-path="summarytools-概述.html"><a href="summarytools-概述.html#grouped-statistics"><i class="fa fa-check"></i><b>5.6</b> 6.Grouped Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="summarytools-概述.html"><a href="summarytools-概述.html#分组统计group_by"><i class="fa fa-check"></i><b>5.7</b> 7. 分组统计：group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-绘图.html"><a href="r-绘图.html"><i class="fa fa-check"></i><b>6</b> R 绘图</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-绘图.html"><a href="r-绘图.html#词云"><i class="fa fa-check"></i><b>6.1</b> 词云</a></li>
+<li class="chapter" data-level="6.2" data-path="r-绘图.html"><a href="r-绘图.html#使用-plotly-创建交互式图表"><i class="fa fa-check"></i><b>6.2</b> 使用 Plotly 创建交互式图表</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="r-绘图.html"><a href="r-绘图.html#ggplot-图和plotly-图转换"><i class="fa fa-check"></i><b>6.2.1</b> ggplot 图和plotly 图转换</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-绘图.html"><a href="r-绘图.html#ggfortify"><i class="fa fa-check"></i><b>6.3</b> ggfortify</a></li>
+<li class="chapter" data-level="6.4" data-path="r-绘图.html"><a href="r-绘图.html#corrplot"><i class="fa fa-check"></i><b>6.4</b> corrplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="因果推断-1.html"><a href="因果推断-1.html"><i class="fa fa-check"></i><b>7</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="因果推断-1.html"><a href="因果推断-1.html#因果推断的基本概念"><i class="fa fa-check"></i><b>7.1</b> 因果推断的基本概念</a></li>
+<li class="chapter" data-level="7.2" data-path="因果推断-1.html"><a href="因果推断-1.html#r中的因果推断工具"><i class="fa fa-check"></i><b>7.2</b> R中的因果推断工具</a></li>
+<li class="chapter" data-level="7.3" data-path="因果推断-1.html"><a href="因果推断-1.html#匹配方法"><i class="fa fa-check"></i><b>7.3</b> 匹配方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="因果推断-1.html"><a href="因果推断-1.html#倾向得分匹配"><i class="fa fa-check"></i><b>7.3.1</b> 倾向得分匹配</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="因果推断-1.html"><a href="因果推断-1.html#工具变量法"><i class="fa fa-check"></i><b>7.4</b> 工具变量法</a></li>
+<li class="chapter" data-level="7.5" data-path="因果推断-1.html"><a href="因果推断-1.html#参考"><i class="fa fa-check"></i><b>7.5</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="process-mining.html"><a href="process-mining.html"><i class="fa fa-check"></i><b>8</b> Process mining</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="process-mining.html"><a href="process-mining.html#流程挖掘的基本概念"><i class="fa fa-check"></i><b>8.1</b> 流程挖掘的基本概念</a></li>
+<li class="chapter" data-level="8.2" data-path="process-mining.html"><a href="process-mining.html#r语言中的流程挖掘工具"><i class="fa fa-check"></i><b>8.2</b> R语言中的流程挖掘工具</a></li>
+<li class="chapter" data-level="8.3" data-path="process-mining.html"><a href="process-mining.html#数据准备"><i class="fa fa-check"></i><b>8.3</b> 数据准备</a></li>
+<li class="chapter" data-level="8.4" data-path="process-mining.html"><a href="process-mining.html#控制流挖掘"><i class="fa fa-check"></i><b>8.4</b> 控制流挖掘</a></li>
+<li class="chapter" data-level="8.5" data-path="process-mining.html"><a href="process-mining.html#性能分析"><i class="fa fa-check"></i><b>8.5</b> 性能分析</a></li>
+<li class="chapter" data-level="8.6" data-path="process-mining.html"><a href="process-mining.html#社会网络分析"><i class="fa fa-check"></i><b>8.6</b> 社会网络分析</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>9</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性-feature-importance"><i class="fa fa-check"></i><b>9.1</b> 特征重要性 (Feature Importance)</a></li>
+<li class="chapter" data-level="9.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#偏差分析-partial-dependence-plots-pdp"><i class="fa fa-check"></i><b>9.2</b> 偏差分析 (Partial Dependence Plots, PDP)</a></li>
+<li class="chapter" data-level="9.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部解释"><i class="fa fa-check"></i><b>9.3</b> 局部解释</a></li>
+<li class="chapter" data-level="9.4" data-path="可解释机器学习.html"><a href="可解释机器学习.html#参考-1"><i class="fa fa-check"></i><b>9.4</b> 参考</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">Driven by Data: The Power of Insights with R</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Driven by Data: The Power of Insights with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="数据" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> 数据<a href="数据.html#数据" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="badge-data.png" />
+## 什么是数据</p>
+<p>有人说我们生活在数据时代。但数据到底是什么？纯粹主义者说：“数据的复数形式”，并补充说数据只是一个观察结果。但当我们说“数据”时，我们通常指的不仅仅是一堆观察结果。琼斯早餐吃了苹果和香蕉这一观察结果，也许很有趣，但并不是我们通常所称的“数据”。</p>
+<p>韦氏词典提供了以下定义：</p>
+<p><strong>作为推理、讨论或计算基础的事实信息（如测量或统计数据）。
+Factual information (such as measurements or statistics) used as a basis for reasoning, discussion, or calculation.</strong></p>
+<p>这是一种目的论的定义，因为它涉及到一个目的：数据是作为“推理、讨论或计算基础使用的东西”。所以，我们所说的“数据”的含义在很大程度上取决于我们打算用它来做什么。这个定义的另一个重要方面是，我们通常认为数据以某种方式或另一种方式被系统地结构化。即使当我们谈论“原始数据”时，我们也希望有一些结构（也许是标签、类别等），以区别于无法解释的噪音。总之，我们可以说数据是以系统方式存储的信息的表示，用于推断、论证或决策。</p>
+<div id="不同种类数据" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 不同种类数据<a href="数据.html#不同种类数据" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="dkod.png" /></p>
+<p>认为数据总是基于对世界的观察而获得的信息是容易但错误的。这种错误的想法容易产生是因为经验数据，即从经验观察中获得的数据，是最常见的数据形式（可以说，它对决策和论证最为相关）。但这种想法是错误的，因为我们同样可以研究虚拟数据。例如，对于数据分析师来说，感兴趣的虚拟数据可以是从计算机模拟研究中获得的数据，例如，从一个旨在阐明合作互动性质的多智能体模拟的十亿次运行中获得的数据。使用与实验数据相同的工具分析这样的数据是有意义的。例如，我们可能会发现在模拟运行中的某些参数组合（在统计上）最有利于产生我们的代理人之间的合作行为。虚拟数据的另一个例子是作为模型预测的数据，我们可以使用这些数据来测试该模型的好坏，即所谓的模型批评。最后，我们还应该在这个列表中包括逻辑上可能的样本数据，因为这对于统计推断的核心思想（尤其是p值，参见第16节）非常重要。逻辑上可能的样本数据是那些既没有被观察到也没有被模型预测的数据，而是一些在逻辑上可能观察到的东西，即使在现实中几乎不会发生，或者不会被任何严肃的模型所预测。</p>
+<p>最常见的数据形式，关于实际世界的经验数据，有两种主要变体。观察数据是通过（被动地）观察和记录获得的，即使我们对它不感兴趣，它也会发生。观察数据的示例包括社会经济变量的集合，如性别、教育、收入、子女人数等。相反，实验数据是在严格的操纵和观察的制度中记录的，即科学实验。一些信息只能在观察研究中记录（年收入），而另一些信息只能通过实验获得（记忆力）。数据获取的两种方法各有利弊。以下是一些较为突出的优缺点：</p>
+<table>
+<thead>
+<tr class="header">
+<th>观察性</th>
+<th>实验性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>生态有效性高</td>
+<td>可能人为</td>
+</tr>
+<tr class="even">
+<td>更容易获取</td>
+<td>更难获取</td>
+</tr>
+<tr class="odd">
+<td>难以区分相关性和因果关系</td>
+<td>可能提供有关因果关系与相关性的信息</td>
+</tr>
+</tbody>
+</table>
+<p>无论我们手头有什么样的数据，数据至少有两个显著的用途：解释和预测。虽然相关，但将这些目的清晰地区分开来是有用的。用于解释的数据分析利用数据来更好地理解数据的来源（世界、计算机模拟、模型等）。用于预测的数据分析试图从迄今收集的数据中提取规律，以便对未来或迄今未观察到的数据进行预测（尽可能准确地）。</p>
+</div>
+<div id="关于变量" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> 关于变量<a href="数据.html#关于变量" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>用于数据分析的数据，即使是“原始数据”，即在预处理和清理之前的数据，通常都以某种方式进行了结构化或标记。即使我们手头的全部数据是一个数字向量，我们通常也知道这些数字代表什么。例如，我们可能只有一个五元组的数字，但我们通常/理想地知道这些数字代表智商测试的结果。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="数据.html#cb1-1" tabindex="-1"></a><span class="co"># 一个简单的智商分数数据向量</span></span>
+<span id="cb1-2"><a href="数据.html#cb1-2" tabindex="-1"></a>IQ_scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">102</span>, <span class="dv">115</span>, <span class="dv">97</span>, <span class="dv">126</span>, <span class="dv">87</span>)</span></code></pre></div>
+<p>或者我们可能有一个布尔向量，其中包含每个学生是否通过了考试的信息。但即便如此，我们通常/理想地也会知道姓名与考试结果之间的关联，就像下表所示：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="数据.html#cb2-1" tabindex="-1"></a> <span class="fu">library</span>(tibble)</span>
+<span id="cb2-2"><a href="数据.html#cb2-2" tabindex="-1"></a><span class="co"># 谁通过了考试</span></span>
+<span id="cb2-3"><a href="数据.html#cb2-3" tabindex="-1"></a>exam_results <span class="ot">&lt;-</span> </span>
+<span id="cb2-4"><a href="数据.html#cb2-4" tabindex="-1"></a>  <span class="fu">tribble</span>(</span>
+<span id="cb2-5"><a href="数据.html#cb2-5" tabindex="-1"></a>    <span class="sc">~</span>student,   <span class="sc">~</span>pass,</span>
+<span id="cb2-6"><a href="数据.html#cb2-6" tabindex="-1"></a>    <span class="st">&quot;Jax&quot;</span>,      <span class="cn">TRUE</span>,</span>
+<span id="cb2-7"><a href="数据.html#cb2-7" tabindex="-1"></a>    <span class="st">&quot;Jason&quot;</span>,    <span class="cn">FALSE</span>,</span>
+<span id="cb2-8"><a href="数据.html#cb2-8" tabindex="-1"></a>    <span class="st">&quot;Jamie&quot;</span>,    <span class="cn">TRUE</span></span>
+<span id="cb2-9"><a href="数据.html#cb2-9" tabindex="-1"></a>  )</span></code></pre></div>
+<p>像上面表格中的不同列之间的信息关联至关重要。大多数情况下，我们关心的不止一个观察结果。大多数情况下，我们关心世界中不同可观察到的变量之间的系统关系。例如，我们可能想要查看通过考试的机会与课程教学辅导的出勤比例之间的关系：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="数据.html#cb3-1" tabindex="-1"></a><span class="co"># 出勤教程的比例与考试通过/不通过</span></span>
+<span id="cb3-2"><a href="数据.html#cb3-2" tabindex="-1"></a>exam_results <span class="ot">&lt;-</span> </span>
+<span id="cb3-3"><a href="数据.html#cb3-3" tabindex="-1"></a>  <span class="fu">tribble</span>(</span>
+<span id="cb3-4"><a href="数据.html#cb3-4" tabindex="-1"></a>    <span class="sc">~</span>student,   <span class="sc">~</span>tutorial_proportion,   <span class="sc">~</span>pass,</span>
+<span id="cb3-5"><a href="数据.html#cb3-5" tabindex="-1"></a>    <span class="st">&quot;Jax&quot;</span>,      <span class="fl">0.0</span>,                    <span class="cn">TRUE</span>,</span>
+<span id="cb3-6"><a href="数据.html#cb3-6" tabindex="-1"></a>    <span class="st">&quot;Jason&quot;</span>,    <span class="fl">0.78</span>,                   <span class="cn">FALSE</span>,</span>
+<span id="cb3-7"><a href="数据.html#cb3-7" tabindex="-1"></a>    <span class="st">&quot;Jamie&quot;</span>,    <span class="fl">0.39</span>,                   <span class="cn">TRUE</span></span>
+<span id="cb3-8"><a href="数据.html#cb3-8" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="数据.html#cb3-9" tabindex="-1"></a>exam_results</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   student tutorial_proportion pass 
+##   &lt;chr&gt;                 &lt;dbl&gt; &lt;lgl&gt;
+## 1 Jax                    0    TRUE 
+## 2 Jason                  0.78 FALSE
+## 3 Jamie                  0.39 TRUE</code></pre>
+<p>这种类型的数据也被称为矩形数据，即适合放入矩形表格中的数据（有关矩形数据结构的更多信息，请参见第4.2节）。在上面的示例中，每一列代表一个感兴趣的变量。一个（数据）变量存储了相同类型的观察结果。</p>
+<p>基于它们所代表的观察类型的结构属性，可以区分不同类型的变量。常见类型的变量包括：</p>
+<ol style="list-style-type: decimal">
+<li>名义变量：每个观察结果都是一组（有限）明确不同类别的实例，缺乏自然顺序；</li>
+<li>二元变量：名义变量的特例，只有两个类别；</li>
+<li>布尔变量：二元变量的特例，两个类别是布尔值“true”和“false”；</li>
+<li>顺序变量：每个观察结果都是一组（有限）明确不同且自然排序的类别的实例，但是类别之间没有自然的距离含义（即，说A比B“更多”是有意义的，但说A是B的三倍“更多”是没有意义的）；</li>
+<li>度量变量：每个观察结果与实数的子集同构，并且是区间标度的（即，说A是B的三倍“更多”是有意义的）；</li>
+</ol>
+<p>在实验数据中，我们还区分因变量和自变量。因变量是实验中我们不控制或不操纵的变量，但我们感兴趣记录的变量（例如，患者是否在一周内从疾病中康复）。因变量也被称为待解释变量。自变量是实验中我们操纵的变量（例如，要给予哪种药物），通常是希望在因变量上看到特定效果的。自变量也被称为解释变量。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="数据转换.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 因果推断 | Driven by Data: The Power of Insights with R</title>
+  <meta name="description" content="Chapter 7 因果推断 | Driven by Data: The Power of Insights with R" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 因果推断 | Driven by Data: The Power of Insights with R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 因果推断 | Driven by Data: The Power of Insights with R" />
+  
+  
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-绘图.html"/>
+<link rel="next" href="process-mining.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Driven by Data: The Power of Insights with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#一个简单的例子"><i class="fa fa-check"></i><b>1.1</b> 一个简单的例子</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#数据分析的4原则"><i class="fa fa-check"></i><b>1.2</b> 数据分析的4原则:</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#sumamry"><i class="fa fa-check"></i><b>1.3</b> sumamry</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#数据可视化"><i class="fa fa-check"></i><b>1.3.1</b> 数据可视化</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#数据处理"><i class="fa fa-check"></i><b>1.3.2</b> 数据处理</a></li>
+<li class="chapter" data-level="1.3.3" data-path="index.html"><a href="index.html#数据探索"><i class="fa fa-check"></i><b>1.3.3</b> 数据探索</a></li>
+<li class="chapter" data-level="1.3.4" data-path="index.html"><a href="index.html#数据整理"><i class="fa fa-check"></i><b>1.3.4</b> 数据整理</a></li>
+<li class="chapter" data-level="1.3.5" data-path="index.html"><a href="index.html#多数据集合并"><i class="fa fa-check"></i><b>1.3.5</b> 多数据集合并</a></li>
+<li class="chapter" data-level="1.3.6" data-path="index.html"><a href="index.html#字符串"><i class="fa fa-check"></i><b>1.3.6</b> 字符串</a></li>
+<li class="chapter" data-level="1.3.7" data-path="index.html"><a href="index.html#因子"><i class="fa fa-check"></i><b>1.3.7</b> 因子</a></li>
+<li class="chapter" data-level="1.3.8" data-path="index.html"><a href="index.html#时间日期"><i class="fa fa-check"></i><b>1.3.8</b> 时间日期</a></li>
+<li class="chapter" data-level="1.3.9" data-path="index.html"><a href="index.html#图形细节调整"><i class="fa fa-check"></i><b>1.3.9</b> 图形细节调整</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="数据.html"><a href="数据.html"><i class="fa fa-check"></i><b>2</b> 数据</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="数据.html"><a href="数据.html#什么是数据"><i class="fa fa-check"></i><b>2.1</b> 什么是数据</a></li>
+<li class="chapter" data-level="2.2" data-path="数据.html"><a href="数据.html#不同种类数据"><i class="fa fa-check"></i><b>2.2</b> 不同种类数据</a></li>
+<li class="chapter" data-level="2.3" data-path="数据.html"><a href="数据.html#关于变量"><i class="fa fa-check"></i><b>2.3</b> 关于变量</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="数据转换.html"><a href="数据转换.html"><i class="fa fa-check"></i><b>3</b> 数据转换</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="数据转换.html"><a href="数据转换.html#data-transformation"><i class="fa fa-check"></i><b>3.1</b> Data transformation</a></li>
+<li class="chapter" data-level="3.2" data-path="数据转换.html"><a href="数据转换.html#什么是tidy整齐的数据"><i class="fa fa-check"></i><b>3.2</b> 什么是tidy(整齐)的数据</a></li>
+<li class="chapter" data-level="3.3" data-path="数据转换.html"><a href="数据转换.html#pivot_longer"><i class="fa fa-check"></i><b>3.3</b> pivot_longer</a></li>
+<li class="chapter" data-level="3.4" data-path="数据转换.html"><a href="数据转换.html#pivot_wider"><i class="fa fa-check"></i><b>3.4</b> pivot_wider</a></li>
+<li class="chapter" data-level="3.5" data-path="数据转换.html"><a href="数据转换.html#常用数据处理函数"><i class="fa fa-check"></i><b>3.5</b> 常用数据处理函数</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="数据转换.html"><a href="数据转换.html#rename"><i class="fa fa-check"></i><b>3.5.1</b> rename</a></li>
+<li class="chapter" data-level="3.5.2" data-path="数据转换.html"><a href="数据转换.html#select"><i class="fa fa-check"></i><b>3.5.2</b> select</a></li>
+<li class="chapter" data-level="3.5.3" data-path="数据转换.html"><a href="数据转换.html#mutate"><i class="fa fa-check"></i><b>3.5.3</b> mutate</a></li>
+<li class="chapter" data-level="3.5.4" data-path="数据转换.html"><a href="数据转换.html#filter"><i class="fa fa-check"></i><b>3.5.4</b> filter</a></li>
+<li class="chapter" data-level="3.5.5" data-path="数据转换.html"><a href="数据转换.html#arrange"><i class="fa fa-check"></i><b>3.5.5</b> arrange</a></li>
+<li class="chapter" data-level="3.5.6" data-path="数据转换.html"><a href="数据转换.html#group_by-and-summarize"><i class="fa fa-check"></i><b>3.5.6</b> group_by and summarize</a></li>
+<li class="chapter" data-level="3.5.7" data-path="数据转换.html"><a href="数据转换.html#slice_max-slice_min"><i class="fa fa-check"></i><b>3.5.7</b> slice_max (slice_min)</a></li>
+<li class="chapter" data-level="3.5.8" data-path="数据转换.html"><a href="数据转换.html#join"><i class="fa fa-check"></i><b>3.5.8</b> join</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="数据转换.html"><a href="数据转换.html#data-cleaning"><i class="fa fa-check"></i><b>3.6</b> Data Cleaning</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="数据转换.html"><a href="数据转换.html#splitting-text"><i class="fa fa-check"></i><b>3.6.1</b> Splitting Text</a></li>
+<li class="chapter" data-level="3.6.2" data-path="数据转换.html"><a href="数据转换.html#replace-values"><i class="fa fa-check"></i><b>3.6.2</b> Replace Values</a></li>
+<li class="chapter" data-level="3.6.3" data-path="数据转换.html"><a href="数据转换.html#drop-columns"><i class="fa fa-check"></i><b>3.6.3</b> Drop Columns</a></li>
+<li class="chapter" data-level="3.6.4" data-path="数据转换.html"><a href="数据转换.html#drop-rows"><i class="fa fa-check"></i><b>3.6.4</b> Drop Rows</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html"><i class="fa fa-check"></i><b>4</b> 数据科学的其他话题</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#定义数据科学问题"><i class="fa fa-check"></i><b>4.1</b> 定义数据科学问题</a></li>
+<li class="chapter" data-level="4.2" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#建模与统计推断"><i class="fa fa-check"></i><b>4.2</b> 建模与统计推断</a></li>
+<li class="chapter" data-level="4.3" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#因果推断"><i class="fa fa-check"></i><b>4.3</b> 因果推断</a></li>
+<li class="chapter" data-level="4.4" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#分析结果展示"><i class="fa fa-check"></i><b>4.4</b> 分析结果展示</a></li>
+<li class="chapter" data-level="4.5" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#数据科学演讲"><i class="fa fa-check"></i><b>4.5</b> 数据科学演讲</a></li>
+<li class="chapter" data-level="4.6" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#可重复性"><i class="fa fa-check"></i><b>4.6</b> 可重复性</a></li>
+<li class="chapter" data-level="4.7" data-path="数据科学的其他话题.html"><a href="数据科学的其他话题.html#总结"><i class="fa fa-check"></i><b>4.7</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="summarytools-概述.html"><a href="summarytools-概述.html"><i class="fa fa-check"></i><b>5</b> 1. summarytools 概述</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#频率表freq"><i class="fa fa-check"></i><b>5.1</b> 2. 频率表：freq()</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#同时生成多个频率表"><i class="fa fa-check"></i><b>5.1.1</b> 同时生成多个频率表</a></li>
+<li class="chapter" data-level="5.1.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#子集过滤频率表"><i class="fa fa-check"></i><b>5.1.2</b> 子集（过滤）频率表</a></li>
+<li class="chapter" data-level="5.1.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可折叠节"><i class="fa fa-check"></i><b>5.1.3</b> 可折叠节</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#交叉表ctable"><i class="fa fa-check"></i><b>5.2</b> 3. 交叉表：ctable()</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#行列或总体比例"><i class="fa fa-check"></i><b>5.2.1</b> 行、列或总体比例</a></li>
+<li class="chapter" data-level="5.2.2" data-path="summarytools-概述.html"><a href="summarytools-概述.html#最小交叉表"><i class="fa fa-check"></i><b>5.2.2</b> 最小交叉表</a></li>
+<li class="chapter" data-level="5.2.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#卡方检验𝛘²几率比和风险比"><i class="fa fa-check"></i><b>5.2.3</b> 卡方检验（𝛘²）、几率比和风险比</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="summarytools-概述.html"><a href="summarytools-概述.html#描述性统计-descr"><i class="fa fa-check"></i><b>5.3</b> 4. 描述性统计: descr()</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="summarytools-概述.html"><a href="summarytools-概述.html#转置和选择统计信息"><i class="fa fa-check"></i><b>5.3.1</b> 转置和选择统计信息</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="summarytools-概述.html"><a href="summarytools-概述.html#数据框摘要-dfsummary"><i class="fa fa-check"></i><b>5.4</b> 5. 数据框摘要: dfSummary()</a></li>
+<li class="chapter" data-level="5.5" data-path="summarytools-概述.html"><a href="summarytools-概述.html#可选统计信息"><i class="fa fa-check"></i><b>5.5</b> 可选统计信息</a></li>
+<li class="chapter" data-level="5.6" data-path="summarytools-概述.html"><a href="summarytools-概述.html#grouped-statistics"><i class="fa fa-check"></i><b>5.6</b> 6.Grouped Statistics</a></li>
+<li class="chapter" data-level="5.7" data-path="summarytools-概述.html"><a href="summarytools-概述.html#分组统计group_by"><i class="fa fa-check"></i><b>5.7</b> 7. 分组统计：group_by()</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-绘图.html"><a href="r-绘图.html"><i class="fa fa-check"></i><b>6</b> R 绘图</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-绘图.html"><a href="r-绘图.html#词云"><i class="fa fa-check"></i><b>6.1</b> 词云</a></li>
+<li class="chapter" data-level="6.2" data-path="r-绘图.html"><a href="r-绘图.html#使用-plotly-创建交互式图表"><i class="fa fa-check"></i><b>6.2</b> 使用 Plotly 创建交互式图表</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="r-绘图.html"><a href="r-绘图.html#ggplot-图和plotly-图转换"><i class="fa fa-check"></i><b>6.2.1</b> ggplot 图和plotly 图转换</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="r-绘图.html"><a href="r-绘图.html#ggfortify"><i class="fa fa-check"></i><b>6.3</b> ggfortify</a></li>
+<li class="chapter" data-level="6.4" data-path="r-绘图.html"><a href="r-绘图.html#corrplot"><i class="fa fa-check"></i><b>6.4</b> corrplot</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="因果推断-1.html"><a href="因果推断-1.html"><i class="fa fa-check"></i><b>7</b> 因果推断</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="因果推断-1.html"><a href="因果推断-1.html#因果推断的基本概念"><i class="fa fa-check"></i><b>7.1</b> 因果推断的基本概念</a></li>
+<li class="chapter" data-level="7.2" data-path="因果推断-1.html"><a href="因果推断-1.html#r中的因果推断工具"><i class="fa fa-check"></i><b>7.2</b> R中的因果推断工具</a></li>
+<li class="chapter" data-level="7.3" data-path="因果推断-1.html"><a href="因果推断-1.html#匹配方法"><i class="fa fa-check"></i><b>7.3</b> 匹配方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="因果推断-1.html"><a href="因果推断-1.html#倾向得分匹配"><i class="fa fa-check"></i><b>7.3.1</b> 倾向得分匹配</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="因果推断-1.html"><a href="因果推断-1.html#工具变量法"><i class="fa fa-check"></i><b>7.4</b> 工具变量法</a></li>
+<li class="chapter" data-level="7.5" data-path="因果推断-1.html"><a href="因果推断-1.html#参考"><i class="fa fa-check"></i><b>7.5</b> 参考</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="process-mining.html"><a href="process-mining.html"><i class="fa fa-check"></i><b>8</b> Process mining</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="process-mining.html"><a href="process-mining.html#流程挖掘的基本概念"><i class="fa fa-check"></i><b>8.1</b> 流程挖掘的基本概念</a></li>
+<li class="chapter" data-level="8.2" data-path="process-mining.html"><a href="process-mining.html#r语言中的流程挖掘工具"><i class="fa fa-check"></i><b>8.2</b> R语言中的流程挖掘工具</a></li>
+<li class="chapter" data-level="8.3" data-path="process-mining.html"><a href="process-mining.html#数据准备"><i class="fa fa-check"></i><b>8.3</b> 数据准备</a></li>
+<li class="chapter" data-level="8.4" data-path="process-mining.html"><a href="process-mining.html#控制流挖掘"><i class="fa fa-check"></i><b>8.4</b> 控制流挖掘</a></li>
+<li class="chapter" data-level="8.5" data-path="process-mining.html"><a href="process-mining.html#性能分析"><i class="fa fa-check"></i><b>8.5</b> 性能分析</a></li>
+<li class="chapter" data-level="8.6" data-path="process-mining.html"><a href="process-mining.html#社会网络分析"><i class="fa fa-check"></i><b>8.6</b> 社会网络分析</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="可解释机器学习.html"><a href="可解释机器学习.html"><i class="fa fa-check"></i><b>9</b> 可解释机器学习</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="可解释机器学习.html"><a href="可解释机器学习.html#特征重要性-feature-importance"><i class="fa fa-check"></i><b>9.1</b> 特征重要性 (Feature Importance)</a></li>
+<li class="chapter" data-level="9.2" data-path="可解释机器学习.html"><a href="可解释机器学习.html#偏差分析-partial-dependence-plots-pdp"><i class="fa fa-check"></i><b>9.2</b> 偏差分析 (Partial Dependence Plots, PDP)</a></li>
+<li class="chapter" data-level="9.3" data-path="可解释机器学习.html"><a href="可解释机器学习.html#局部解释"><i class="fa fa-check"></i><b>9.3</b> 局部解释</a></li>
+<li class="chapter" data-level="9.4" data-path="可解释机器学习.html"><a href="可解释机器学习.html#参考-1"><i class="fa fa-check"></i><b>9.4</b> 参考</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">Driven by Data: The Power of Insights with R</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Driven by Data: The Power of Insights with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="因果推断-1" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> 因果推断<a href="因果推断-1.html#因果推断-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>因果推断是数据科学中的一个重要领域，它旨在识别和量化变量之间的因果关系。在实际应用中，如医学、经济学和社会科学等领域，正确的因果推断对于制定政策和决策具有重要意义。R作为一种广泛使用的统计编程语言，提供了丰富的工具和包来支持因果推断的分析。</p>
+<div id="因果推断的基本概念" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> 因果推断的基本概念<a href="因果推断-1.html#因果推断的基本概念" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在深入了解R中的因果推断工具之前，我们首先需要理解一些基本概念：</p>
+<p>因果关系：如果一个变量（自变量）的变化导致另一个变量（因变量）的变化，那么这两个变量之间存在因果关系。
+潜在结果模型：这是一种理论框架，用于描述在不同处理条件下个体可能出现的结果。
+平均处理效应（ATE）：处理组和对照组潜在结果的平均差异，用于衡量处理效果的大小。</p>
+</div>
+<div id="r中的因果推断工具" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> R中的因果推断工具<a href="因果推断-1.html#r中的因果推断工具" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R提供了多种包来支持因果推断的分析：</p>
+<ol style="list-style-type: decimal">
+<li>causalimpact：用于估计时间序列干预的因果效应。</li>
+<li>MatchIt：用于进行匹配和倾向得分分析，以平衡处理组和对照组的特征。</li>
+<li>DAGitty：用于创建和分析有向无环图（DAGs），帮助识别因果关系。</li>
+</ol>
+</div>
+<div id="匹配方法" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> 匹配方法<a href="因果推断-1.html#匹配方法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>匹配方法是一种常用的因果推断技术，旨在通过匹配处理组和对照组中相似的个体来减少选择偏差。在R中，MatchIt包提供了多种匹配方法，如最近邻匹配、倾向得分匹配和卡尔洛匹配等。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="因果推断-1.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb1-2"><a href="因果推断-1.html#cb1-2" tabindex="-1"></a><span class="fu">data</span>(lalonde)</span>
+<span id="cb1-3"><a href="因果推断-1.html#cb1-3" tabindex="-1"></a>m.out <span class="ot">&lt;-</span> <span class="fu">matchit</span>(treat <span class="sc">~</span> age <span class="sc">+</span> educ <span class="sc">+</span> race <span class="sc">+</span> married <span class="sc">+</span> nodegree <span class="sc">+</span> re74 <span class="sc">+</span> re75, <span class="at">data =</span> lalonde)</span></code></pre></div>
+<p>在上述代码中，我们使用matchit函数进行倾向得分匹配，其中treat是处理变量，其余变量作为协变量用于匹配。</p>
+<div id="倾向得分匹配" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> 倾向得分匹配<a href="因果推断-1.html#倾向得分匹配" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>倾向得分匹配是一种特殊的匹配方法，它使用倾向得分（处理概率的估计）来匹配处理组和对照组中的个体。这种方法可以减少由于观察数据中的混杂变量引起的偏差。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="因果推断-1.html#cb2-1" tabindex="-1"></a>m.out</span></code></pre></div>
+<pre><code>## A matchit object
+##  - method: 1:1 nearest neighbor matching without replacement
+##  - distance: Propensity score
+##              - estimated with logistic regression
+##  - number of obs.: 614 (original), 370 (matched)
+##  - target estimand: ATT
+##  - covariates: age, educ, race, married, nodegree, re74, re75</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="因果推断-1.html#cb4-1" tabindex="-1"></a>matched_data <span class="ot">&lt;-</span> <span class="fu">match.data</span>(m.out)</span></code></pre></div>
+<p>在上述代码中，match.data函数用于提取匹配后的数据，可以用于进一步的因果效应分析。</p>
+</div>
+</div>
+<div id="工具变量法" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> 工具变量法<a href="因果推断-1.html#工具变量法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>工具变量法是解决因果推断中内生性问题的一种方法。当自变量与误差项相关时，OLS估计会产生偏误。工具变量法通过引入一个与自变量相关但与误差项不相关的工具变量来解决这个问题。</p>
+<p>在R中，我们可以使用AER包中的ivreg函数来进行工具变量回归。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="因果推断-1.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(AER)</span></code></pre></div>
+<pre><code>## Loading required package: car</code></pre>
+<pre><code>## Loading required package: carData</code></pre>
+<pre><code>## Loading required package: lmtest</code></pre>
+<pre><code>## Loading required package: zoo</code></pre>
+<pre><code>## 
+## Attaching package: &#39;zoo&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     as.Date, as.Date.numeric</code></pre>
+<pre><code>## Loading required package: sandwich</code></pre>
+<pre><code>## Loading required package: survival</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="因果推断-1.html#cb14-1" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;CigarettesSW&quot;</span>)</span>
+<span id="cb14-2"><a href="因果推断-1.html#cb14-2" tabindex="-1"></a>ivreg_model <span class="ot">&lt;-</span> <span class="fu">ivreg</span>(<span class="fu">log</span>(packs) <span class="sc">~</span> <span class="fu">log</span>(price) <span class="sc">+</span> <span class="fu">log</span>(income) <span class="sc">|</span> <span class="fu">log</span>(price) <span class="sc">+</span> <span class="fu">log</span>(tax), <span class="at">data =</span> CigarettesSW)</span>
+<span id="cb14-3"><a href="因果推断-1.html#cb14-3" tabindex="-1"></a><span class="fu">summary</span>(ivreg_model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## ivreg(formula = log(packs) ~ log(price) + log(income) | log(price) + 
+##     log(tax), data = CigarettesSW)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.7376  -5.1634  -0.7769   5.7791  13.6920 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  -77.825   1542.962  -0.050    0.960
+## log(price)    -8.953    152.663  -0.059    0.953
+## log(income)    7.083    128.398   0.055    0.956
+## 
+## Residual standard error: 7.303 on 93 degrees of freedom
+## Multiple R-Squared: -878.6,  Adjusted R-squared: -897.5 
+## Wald test: 0.02487 on 2 and 93 DF,  p-value: 0.9754</code></pre>
+<p>在这个例子中，我们使用log(price)和log(income)作为工具变量来估计香烟包数（log(packs)）对价格（log(rprice)）的因果效应。</p>
+</div>
+<div id="参考" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> 参考<a href="因果推断-1.html#参考" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>倾向性评分匹配 : <a href="https://rpubs.com/liam/1097043" class="uri">https://rpubs.com/liam/1097043</a></li>
+<li>数据科学中的因果推断，一个简单的例子 : <a href="https://rpubs.com/liam/Causal_inference" class="uri">https://rpubs.com/liam/Causal_inference</a></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-绘图.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="process-mining.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-share.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
